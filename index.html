@@ -1400,9 +1400,6 @@
       }
     }
 
-    // Load live data on page load
-    loadLiveData();
-
     // ===== Enhanced Early Access with Swap Integration =====
     async function initializeEarlyAccess() {
       const buyBtn = document.getElementById('buyEarlyBtn');
@@ -1477,14 +1474,24 @@
       });
     }
 
-    // Initialize early access on page load
-    initializeEarlyAccess();
-
     // Year
     document.getElementById('yr').textContent = new Date().getFullYear();
   </script>
 
   <!-- Load ethers.js for Web3 integration -->
   <script src="https://cdn.ethers.org/lib/ethers-5.2.umd.min.js"></script>
+  <script>
+    // ===== Additional Web3 functions after ethers.js loads =====
+    window.addEventListener('load', function() {
+      // Re-initialize Web3 functions after ethers.js is loaded
+      if (typeof ethers !== 'undefined') {
+        console.log('ethers.js loaded successfully');
+        loadLiveData();
+        initializeEarlyAccess();
+      } else {
+        console.error('ethers.js failed to load');
+      }
+    });
+  </script>
 </body>
 </html>
