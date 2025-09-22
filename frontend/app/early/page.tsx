@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, Suspense } from 'react';
+import { useEffect, Suspense } from 'react';
 import { useAccount, useWriteContract } from 'wagmi';
 import { keccak256, encodeAbiParameters } from 'viem';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
