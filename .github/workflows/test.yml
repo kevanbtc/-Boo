@@ -18,16 +18,34 @@ jobs:
           submodules: recursive
 
       - name: Install Foundry
-        uses: foundry-rs/foundry-toolchain@v1
+        run: |
+          n=0
+          until [ "$n" -ge 5 ]
+          do
+            curl -L https://foundry.paradigm.xyz | bash && break
+            n=$((n+1))
+            echo "Attempt $n failed, retrying in $((10 * n)) seconds..."
+            sleep $((10 * n))
+          done
+          export PATH="$PATH:$HOME/.foundry/bin"
+          foundryup
 
       - name: Show Forge version
-        run: forge --version
+        run: |
+          export PATH="$PATH:$HOME/.foundry/bin"
+          forge --version
 
       - name: Run Forge fmt
-        run: forge fmt --check
+        run: |
+          export PATH="$PATH:$HOME/.foundry/bin"
+          forge fmt --check
 
       - name: Run Forge build
-        run: forge build --sizes
+        run: |
+          export PATH="$PATH:$HOME/.foundry/bin"
+          forge build --sizes
 
       - name: Run Forge tests
-        run: forge test -vvv
+        run: |
+          export PATH="$PATH:$HOME/.foundry/bin"
+          forge test -vvv
