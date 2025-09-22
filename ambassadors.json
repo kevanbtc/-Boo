@@ -1,0 +1,346 @@
+[
+  {
+    "handle": "CryptoKing",
+    "wallet": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    "avatar": "👑",
+    "tier": "Tier 1",
+    "volumeBoo": 500000,
+    "commission": "3%"
+  },
+  {
+    "handle": "HalloweenHODL",
+    "wallet": "0x8ba1f109551bD432803012645ac136ddd64DBA72",
+    "avatar": "🦇",
+    "tier": "Tier 1",
+    "volumeBoo": 450000,
+    "commission": "3%"
+  },
+  {
+    "handle": "PumpkinLord",
+    "wallet": "0x1234567890123456789012345678901234567890",
+    "avatar": "🎃",
+    "tier": "Tier 1",
+    "volumeBoo": 420000,
+    "commission": "3%"
+  },
+  {
+    "handle": "GhostTrader",
+    "wallet": "0x2345678901234567890123456789012345678901",
+    "avatar": "👻",
+    "tier": "Tier 1",
+    "volumeBoo": 380000,
+    "commission": "3%"
+  },
+  {
+    "handle": "SpiderWeb",
+    "wallet": "0x3456789012345678901234567890123456789012",
+    "avatar": "🕷️",
+    "tier": "Tier 1",
+    "volumeBoo": 350000,
+    "commission": "3%"
+  },
+  {
+    "handle": "SkullCrusher",
+    "wallet": "0x4567890123456789012345678901234567890123",
+    "avatar": "💀",
+    "tier": "Tier 1",
+    "volumeBoo": 320000,
+    "commission": "3%"
+  },
+  {
+    "handle": "WitchWallet",
+    "wallet": "0x5678901234567890123456789012345678901234",
+    "avatar": "🧙‍♀️",
+    "tier": "Tier 2",
+    "volumeBoo": 280000,
+    "commission": "2.5%"
+  },
+  {
+    "handle": "BatSignal",
+    "wallet": "0x6789012345678901234567890123456789012345",
+    "avatar": "🦇",
+    "tier": "Tier 2",
+    "volumeBoo": 250000,
+    "commission": "2.5%"
+  },
+  {
+    "handle": "JackOLantern",
+    "wallet": "0x7890123456789012345678901234567890123456",
+    "avatar": "🎃",
+    "tier": "Tier 2",
+    "volumeBoo": 220000,
+    "commission": "2.5%"
+  },
+  {
+    "handle": "PhantomForce",
+    "wallet": "0x8901234567890123456789012345678901234567",
+    "avatar": "👻",
+    "tier": "Tier 2",
+    "volumeBoo": 200000,
+    "commission": "2.5%"
+  },
+  {
+    "handle": "WebMaster",
+    "wallet": "0x9012345678901234567890123456789012345678",
+    "avatar": "🕸️",
+    "tier": "Tier 2",
+    "volumeBoo": 180000,
+    "commission": "2.5%"
+  },
+  {
+    "handle": "BoneChiller",
+    "wallet": "0x0123456789012345678901234567890123456789",
+    "avatar": "💀",
+    "tier": "Tier 2",
+    "volumeBoo": 160000,
+    "commission": "2.5%"
+  },
+  {
+    "handle": "SpellCaster",
+    "wallet": "0x1234567890123456789012345678901234567891",
+    "avatar": "🧙‍♀️",
+    "tier": "Tier 3",
+    "volumeBoo": 140000,
+    "commission": "2%"
+  },
+  {
+    "handle": "NightWing",
+    "wallet": "0x2345678901234567890123456789012345678902",
+    "avatar": "🦇",
+    "tier": "Tier 3",
+    "volumeBoo": 120000,
+    "commission": "2%"
+  },
+  {
+    "handle": "HarvestMoon",
+    "wallet": "0x3456789012345678901234567890123456789013",
+    "avatar": "🎃",
+    "tier": "Tier 3",
+    "volumeBoo": 100000,
+    "commission": "2%"
+  },
+  {
+    "handle": "SpiritWalker",
+    "wallet": "0x4567890123456789012345678901234567890124",
+    "avatar": "👻",
+    "tier": "Tier 3",
+    "volumeBoo": 90000,
+    "commission": "2%"
+  },
+  {
+    "handle": "Arachnid",
+    "wallet": "0x5678901234567890123456789012345678901235",
+    "avatar": "🕷️",
+    "tier": "Tier 3",
+    "volumeBoo": 80000,
+    "commission": "2%"
+  },
+  {
+    "handle": "DeathDealer",
+    "wallet": "0x6789012345678901234567890123456789012346",
+    "avatar": "💀",
+    "tier": "Tier 3",
+    "volumeBoo": 70000,
+    "commission": "2%"
+  },
+  {
+    "handle": "Enchantress",
+    "wallet": "0x7890123456789012345678901234567890123457",
+    "avatar": "🧙‍♀️",
+    "tier": "Tier 3",
+    "volumeBoo": 60000,
+    "commission": "2%"
+  },
+  {
+    "handle": "VampireBat",
+    "wallet": "0x8901234567890123456789012345678901234568",
+    "avatar": "🦇",
+    "tier": "Tier 3",
+    "volumeBoo": 50000,
+    "commission": "2%"
+  },
+  {
+    "handle": "LanternLight",
+    "wallet": "0x9012345678901234567890123456789012345679",
+    "avatar": "🎃",
+    "tier": "Tier 3",
+    "volumeBoo": 45000,
+    "commission": "2%"
+  },
+  {
+    "handle": "Poltergeist",
+    "wallet": "0x0123456789012345678901234567890123456790",
+    "avatar": "👻",
+    "tier": "Tier 3",
+    "volumeBoo": 40000,
+    "commission": "2%"
+  },
+  {
+    "handle": "BlackWidow",
+    "wallet": "0x1234567890123456789012345678901234567892",
+    "avatar": "🕷️",
+    "tier": "Tier 3",
+    "volumeBoo": 35000,
+    "commission": "2%"
+  },
+  {
+    "handle": "GrimReaper",
+    "wallet": "0x2345678901234567890123456789012345678903",
+    "avatar": "💀",
+    "tier": "Tier 3",
+    "volumeBoo": 30000,
+    "commission": "2%"
+  },
+  {
+    "handle": "Sorceress",
+    "wallet": "0x3456789012345678901234567890123456789014",
+    "avatar": "🧙‍♀️",
+    "tier": "Tier 3",
+    "volumeBoo": 25000,
+    "commission": "2%"
+  },
+  {
+    "handle": "EchoBat",
+    "wallet": "0x4567890123456789012345678901234567890125",
+    "avatar": "🦇",
+    "tier": "Tier 3",
+    "volumeBoo": 20000,
+    "commission": "2%"
+  },
+  {
+    "handle": "AutumnGlow",
+    "wallet": "0x5678901234567890123456789012345678901236",
+    "avatar": "🎃",
+    "tier": "Tier 3",
+    "volumeBoo": 18000,
+    "commission": "2%"
+  },
+  {
+    "handle": "Wraith",
+    "wallet": "0x6789012345678901234567890123456789012347",
+    "avatar": "👻",
+    "tier": "Tier 3",
+    "volumeBoo": 16000,
+    "commission": "2%"
+  },
+  {
+    "handle": "SilkSpinner",
+    "wallet": "0x7890123456789012345678901234567890123458",
+    "avatar": "🕷️",
+    "tier": "Tier 3",
+    "volumeBoo": 14000,
+    "commission": "2%"
+  },
+  {
+    "handle": "SoulReaper",
+    "wallet": "0x8901234567890123456789012345678901234569",
+    "avatar": "💀",
+    "tier": "Tier 3",
+    "volumeBoo": 12000,
+    "commission": "2%"
+  },
+  {
+    "handle": "MysticMage",
+    "wallet": "0x9012345678901234567890123456789012345680",
+    "avatar": "🧙‍♀️",
+    "tier": "Tier 3",
+    "volumeBoo": 10000,
+    "commission": "2%"
+  },
+  {
+    "handle": "ShadowBat",
+    "wallet": "0x0123456789012345678901234567890123456791",
+    "avatar": "🦇",
+    "tier": "Tier 3",
+    "volumeBoo": 9000,
+    "commission": "2%"
+  },
+  {
+    "handle": "CandleLight",
+    "wallet": "0x1234567890123456789012345678901234567893",
+    "avatar": "🎃",
+    "tier": "Tier 3",
+    "volumeBoo": 8000,
+    "commission": "2%"
+  },
+  {
+    "handle": "Phantom",
+    "wallet": "0x2345678901234567890123456789012345678904",
+    "avatar": "👻",
+    "tier": "Tier 3",
+    "volumeBoo": 7000,
+    "commission": "2%"
+  },
+  {
+    "handle": "WebWeaver",
+    "wallet": "0x3456789012345678901234567890123456789015",
+    "avatar": "🕷️",
+    "tier": "Tier 3",
+    "volumeBoo": 6000,
+    "commission": "2%"
+  },
+  {
+    "handle": "BoneCollector",
+    "wallet": "0x4567890123456789012345678901234567890126",
+    "avatar": "💀",
+    "tier": "Tier 3",
+    "volumeBoo": 5000,
+    "commission": "2%"
+  },
+  {
+    "handle": "CrystalBall",
+    "wallet": "0x5678901234567890123456789012345678901237",
+    "avatar": "🧙‍♀️",
+    "tier": "Tier 3",
+    "volumeBoo": 4000,
+    "commission": "2%"
+  },
+  {
+    "handle": "NightHunter",
+    "wallet": "0x6789012345678901234567890123456789012348",
+    "avatar": "🦇",
+    "tier": "Tier 3",
+    "volumeBoo": 3000,
+    "commission": "2%"
+  },
+  {
+    "handle": "OrangeGlow",
+    "wallet": "0x7890123456789012345678901234567890123459",
+    "avatar": "🎃",
+    "tier": "Tier 3",
+    "volumeBoo": 2000,
+    "commission": "2%"
+  },
+  {
+    "handle": "Ethereal",
+    "wallet": "0x8901234567890123456789012345678901234570",
+    "avatar": "👻",
+    "tier": "Tier 3",
+    "volumeBoo": 1000,
+    "commission": "2%"
+  },
+  {
+    "handle": "VenomFang",
+    "wallet": "0x9012345678901234567890123456789012345681",
+    "avatar": "🕷️",
+    "tier": "Tier 3",
+    "volumeBoo": 500,
+    "commission": "2%"
+  },
+  {
+    "handle": "DarkLord",
+    "wallet": "0x0123456789012345678901234567890123456792",
+    "avatar": "💀",
+    "tier": "Tier 3",
+    "volumeBoo": 250,
+    "commission": "2%"
+  },
+  {
+    "handle": "ArcaneArts",
+    "wallet": "0x1234567890123456789012345678901234567894",
+    "avatar": "🧙‍♀️",
+    "tier": "Tier 3",
+    "volumeBoo": 100,
+    "commission": "2%"
+  }
+]

@@ -367,7 +367,7 @@
       <a class="tile" id="early" href="/early">
         <div class="panel reveal">
           <h3>Early Access</h3>
-          <p class="muted">Friends & Family: <b>Today</b> • Presale: <b>Oct 5th</b> • Launch: <b>Halloween</b></p>
+          <p class="muted">Friends & Family: <b>Sep 22, 2025</b> • Presale: <b>Oct 5, 2025</b> • Launch: <b>Oct 31, 2025</b></p>
           <p class="muted" style="font-size:0.9rem; margin-top:8px">Onramp via card/crypto and claim your personal link.</p>
           <div style="margin-top:10px"><span class="btn shimmer" style="padding:8px 12px">Start Now</span></div>
         </div>
@@ -430,7 +430,9 @@
     <h2 class="reveal">🎃 Top 50 Ambassadors 🎃</h2>
     <p class="reveal" style="text-align:center; margin-bottom:30px; color:#ffd700">Our elite affiliate partners driving the BOO revolution</p>
 
-    <div class="ambassadors-grid reveal">
+    <div class="ambassadors-grid reveal" id="ambassadorsGrid">
+      <!-- Ambassadors will be loaded dynamically -->
+    </div>
       <div class="ambassador-card">
         <div class="ambassador-avatar">👑</div>
         <div class="ambassador-info">
@@ -792,11 +794,33 @@
     <div class="grid-feat">
       <div class="panel reveal">
         <h3>Token</h3>
-        <div class="mono" id="tokenAddr">0x729B992ba1ccea88BE66985DCa5Ff28Ebba12046</div>
+        <div class="mono" id="tokenAddr">0x90193C961A926261B756D1E5bb255e67ff9498A1</div>
+        <a href="https://amoy.polygonscan.com/address/0x90193C961A926261B756D1E5bb255e67ff9498A1" target="_blank" rel="noopener noreferrer" class="muted">View on Polygonscan ↗</a>
       </div>
       <div class="panel reveal">
         <h3>Referral Registry</h3>
-        <div class="mono" id="refAddr">0xdaC20C02D7AE682cC3dF4A7F57CCB5320B92eC28</div>
+        <div class="mono" id="refAddr">0x5b73C5498c1E3b4dbA84de0F1833c4a029d90519</div>
+        <a href="https://amoy.polygonscan.com/address/0x5b73C5498c1E3b4dbA84de0F1833c4a029d90519" target="_blank" rel="noopener noreferrer" class="muted">View on Polygonscan ↗</a>
+      </div>
+      <div class="panel reveal">
+        <h3>Fee Router</h3>
+        <div class="mono">0x50EEf481cae4250d252Ae577A09bF514f224C6C4</div>
+        <a href="https://amoy.polygonscan.com/address/0x50EEf481cae4250d252Ae577A09bF514f224C6C4" target="_blank" rel="noopener noreferrer" class="muted">View on Polygonscan ↗</a>
+      </div>
+      <div class="panel reveal">
+        <h3>Staking Manager</h3>
+        <div class="mono">0x62c20Aa1e0272312BC100b4e23B4DC1Ed96dD7D1</div>
+        <a href="https://amoy.polygonscan.com/address/0x62c20Aa1e0272312BC100b4e23B4DC1Ed96dD7D1" target="_blank" rel="noopener noreferrer" class="muted">View on Polygonscan ↗</a>
+      </div>
+      <div class="panel reveal">
+        <h3>Boo Costume NFT</h3>
+        <div class="mono">0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496</div>
+        <a href="https://amoy.polygonscan.com/address/0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496" target="_blank" rel="noopener noreferrer" class="muted">View on Polygonscan ↗</a>
+      </div>
+      <div class="panel reveal">
+        <h3>Airdrop Merkle</h3>
+        <div class="mono">0xA8452Ec99ce0C64f20701dB7dD3abDb607c00496</div>
+        <a href="https://amoy.polygonscan.com/address/0xA8452Ec99ce0C64f20701dB7dD3abDb607c00496" target="_blank" rel="noopener noreferrer" class="muted">View on Polygonscan ↗</a>
       </div>
       <div class="panel reveal">
         <h3>Fee Split</h3>
@@ -1090,6 +1114,91 @@
         setTimeout(() => explodeStyle.remove(), 1000);
       });
     }
+
+    // ===== Load ambassadors from JSON =====
+    async function loadAmbassadors() {
+      try {
+        const response = await fetch('./ambassadors.json');
+        const ambassadors = await response.json();
+        const grid = document.getElementById('ambassadorsGrid');
+
+        ambassadors.forEach(ambassador => {
+          const card = document.createElement('div');
+          card.className = 'ambassador-card';
+          card.innerHTML = `
+            <div class="ambassador-avatar">${ambassador.avatar}</div>
+            <div class="ambassador-info">
+              <div class="ambassador-name">${ambassador.handle}</div>
+              <div class="ambassador-tier">${ambassador.tier} - ${ambassador.commission}</div>
+              <div class="ambassador-volume">Volume: ${(ambassador.volumeBoo / 1000).toFixed(0)}K $BOO</div>
+              <div class="ambassador-actions" style="margin-top:10px; display:flex; gap:5px;">
+                <button class="btn copy-btn" onclick="copyToClipboard('${location.origin}/early?ref=${ambassador.wallet}&utm_source=ambassador&utm_medium=link&utm_campaign=presale_oct5')" style="font-size:11px; padding:4px 8px;">Copy Link</button>
+                <button class="btn qr-btn" onclick="showQR('${location.origin}/early?ref=${ambassador.wallet}&utm_source=ambassador&utm_medium=link&utm_campaign=presale_oct5')" style="font-size:11px; padding:4px 8px;">QR</button>
+              </div>
+            </div>
+          `;
+          grid.appendChild(card);
+        });
+      } catch (error) {
+        console.error('Failed to load ambassadors:', error);
+      }
+    }
+
+    // ===== QR Code functionality =====
+    function showQR(link) {
+      // Load QRCode library if not already loaded
+      if (typeof QRCode === 'undefined') {
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js';
+        script.onload = () => generateQR(link);
+        document.head.appendChild(script);
+      } else {
+        generateQR(link);
+      }
+    }
+
+    function generateQR(link) {
+      const modal = document.createElement('div');
+      modal.style.cssText = `
+        position:fixed; inset:0; background:#0008; display:grid; place-items:center;
+        z-index:9999; backdrop-filter:blur(5px);
+      `;
+      modal.innerHTML = `
+        <div style="background:#1a1830; padding:20px; border-radius:15px; border:1px solid #ffffff22; text-align:center;">
+          <h3 style="margin:0 0 15px 0; color:#ffd700;">Scan QR Code</h3>
+          <div id="qrcode"></div>
+          <p style="margin:15px 0 0 0; font-size:12px; color:#9aa0aa; word-break:break-all;">${link}</p>
+          <button onclick="this.closest('div').parentElement.remove()" style="margin-top:15px; background:#ff6a00; color:white; border:none; padding:8px 16px; border-radius:8px; cursor:pointer;">Close</button>
+        </div>
+      `;
+      document.body.appendChild(modal);
+
+      QRCode.toCanvas(document.getElementById('qrcode'), link, {
+        width: 200,
+        height: 200,
+        color: { dark: '#ffffff', light: '#1a1830' }
+      });
+    }
+
+    // ===== Copy to clipboard =====
+    async function copyToClipboard(text) {
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast('Link copied to clipboard!');
+      } catch (err) {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        showToast('Link copied to clipboard!');
+      }
+    }
+
+    // ===== Load ambassadors on page load =====
+    loadAmbassadors();
 
     // Year
     document.getElementById('yr').textContent = new Date().getFullYear();
