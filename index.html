@@ -286,6 +286,7 @@
         </a>
         <nav class="menu">
           <a href="#early">Early Access</a>
+          <a href="#certificate">Certificate</a>
           <a href="#ambassadors">Ambassadors</a>
           <a href="#refer">Refer & Earn</a>
           <a href="#quests">Quests</a>
@@ -407,6 +408,50 @@
           <div style="margin-top:10px"><span class="btn" style="padding:8px 12px">View</span></div>
         </div>
       </a>
+    </div>
+  </section>
+
+  <!-- EARLY ACCESS PURCHASE SECTION -->
+  <section class="wrap" id="early-access-buy">
+    <h2 class="reveal">🎃 Early Access Purchase</h2>
+    <div class="panel reveal">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+        <div>
+          <h3 style="color: var(--accent); margin-bottom: 1rem;">Live Contract Status</h3>
+          <p><strong>Total Supply:</strong> <span id="totalSupply">Loading...</span></p>
+          <p><strong>Total Burned:</strong> <span id="totalBurned">Loading...</span></p>
+          <p><strong>Fees Collected:</strong> <span id="totalFees">Loading...</span></p>
+          <p><strong>Contract Status:</strong> <span id="contractStatus">Loading...</span></p>
+        </div>
+        <div>
+          <h3 style="color: var(--accent); margin-bottom: 1rem;">Purchase Details</h3>
+          <p><strong>Phase:</strong> Friends & Family (Sep 22, 2025)</p>
+          <p><strong>Min Purchase:</strong> 100 BOO</p>
+          <p><strong>Max Purchase:</strong> 10,000 BOO (Launch Guard)</p>
+          <p><strong>Network:</strong> Polygon Mainnet</p>
+          <p><strong>Token Address:</strong> <span class="mono" style="font-size: 0.8rem;">0x550f4AF6E9466E4860c1E26509Df72EC30CF72AD</span></p>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <button id="connectWalletBtn" class="btn" style="font-size: 1.1rem; padding: 1rem 2rem; margin-right: 1rem;">
+          🔗 Connect Wallet
+        </button>
+        <div style="display: inline-block; margin-left: 1rem;">
+          <input id="buyAmount" type="number" placeholder="100" min="100" max="10000" step="100"
+                 style="padding: 1rem; border-radius: 10px; border: 1px solid #ffffff22; background: #0f1220; color: var(--ink); width: 120px; text-align: center;">
+          <span style="margin-left: 0.5rem; color: var(--muted);">BOO</span>
+        </div>
+      </div>
+
+      <div style="text-align: center;">
+        <button id="buyEarlyBtn" class="btn shimmer" style="font-size: 1.3rem; padding: 1.2rem 3rem;" disabled>
+          🎃 Buy Early Access Now
+        </button>
+        <p style="margin-top: 1rem; color: var(--muted); font-size: 0.9rem;">
+          DEX integration coming soon. For now, contract is live and verified on PolygonScan.
+        </p>
+      </div>
     </div>
   </section>
 
@@ -830,12 +875,96 @@
     </div>
   </section>
 
+  <!-- CERTIFICATE -->
+  <section class="wrap" id="certificate">
+    <h2 class="reveal">📜 Official Deployment Certificate</h2>
+    <div class="panel reveal" style="text-align: left; max-width: 100%;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+        <div>
+          <h3 style="color: var(--accent); margin-bottom: 1rem;">📋 Certificate Details</h3>
+          <p><strong>Certificate ID:</strong> BOO-DEPLOY-2025-09-22</p>
+          <p><strong>Issue Date:</strong> September 22, 2025</p>
+          <p><strong>Network:</strong> Polygon PoS Mainnet (Chain ID: 137)</p>
+          <p><strong>Developer:</strong> kevanbtc</p>
+          <p><strong>Status:</strong> <span style="color: var(--green);">✅ LIVE & VERIFIED</span></p>
+        </div>
+        <div>
+          <h3 style="color: var(--accent); margin-bottom: 1rem;">💰 Token Economics</h3>
+          <p><strong>Token:</strong> $BOO (Boo)</p>
+          <p><strong>Supply:</strong> 1,000,000,000 BOO</p>
+          <p><strong>Launch:</strong> October 31, 2025</p>
+          <p><strong>Fees:</strong> 0.5% (20% burned)</p>
+          <p><strong>Deployment Cost:</strong> 0.39 POL</p>
+        </div>
+      </div>
+
+      <h3 style="color: var(--accent); margin-bottom: 1rem;">🔗 Live Contract Addresses</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+        <div class="panel" style="background: var(--panel); padding: 1rem;">
+          <h4>$BOO Token</h4>
+          <div class="mono" style="font-size: 0.9rem; word-break: break-all;">0x550f4AF6E9466E4860c1E26509Df72EC30CF72AD</div>
+          <a href="https://polygonscan.com/address/0x550f4AF6E9466E4860c1E26509Df72EC30CF72AD" target="_blank" rel="noopener noreferrer" class="btn" style="margin-top: 0.5rem;">View on PolygonScan ↗</a>
+        </div>
+        <div class="panel" style="background: var(--panel); padding: 1rem;">
+          <h4>Referral Registry</h4>
+          <div class="mono" style="font-size: 0.9rem; word-break: break-all;">0xbeeE2b44Fa90F2E0A1c9240Fd5483292b2c52fbe</div>
+          <a href="https://polygonscan.com/address/0xbeeE2b44Fa90F2E0A1c9240Fd5483292b2c52fbe" target="_blank" rel="noopener noreferrer" class="btn" style="margin-top: 0.5rem;">View on PolygonScan ↗</a>
+        </div>
+        <div class="panel" style="background: var(--panel); padding: 1rem;">
+          <h4>Fee Router</h4>
+          <div class="mono" style="font-size: 0.9rem; word-break: break-all;">0x992f1e349741b5fA61fc7B0c901ee6e5959793Ca</div>
+          <a href="https://polygonscan.com/address/0x992f1e349741b5fA61fc7B0c901ee6e5959793Ca" target="_blank" rel="noopener noreferrer" class="btn" style="margin-top: 0.5rem;">View on PolygonScan ↗</a>
+        </div>
+        <div class="panel" style="background: var(--panel); padding: 1rem;">
+          <h4>Staking Manager</h4>
+          <div class="mono" style="font-size: 0.9rem; word-break: break-all;">0xee10AB608748F886497cD37E46D506FAf5CC11D1</div>
+          <a href="https://polygonscan.com/address/0xee10AB608748F886497cD37E46D506FAf5CC11D1" target="_blank" rel="noopener noreferrer" class="btn" style="margin-top: 0.5rem;">View on PolygonScan ↗</a>
+        </div>
+        <div class="panel" style="background: var(--panel); padding: 1rem;">
+          <h4>Boo Costume NFT</h4>
+          <div class="mono" style="font-size: 0.9rem; word-break: break-all;">0x1F5a80e75A0764440dC9F0c5Dd6AE9f63c64EE3c</div>
+          <a href="https://polygonscan.com/address/0x1F5a80e75A0764440dC9F0c5Dd6AE9f63c64EE3c" target="_blank" rel="noopener noreferrer" class="btn" style="margin-top: 0.5rem;">View on PolygonScan ↗</a>
+        </div>
+        <div class="panel" style="background: var(--panel); padding: 1rem;">
+          <h4>Launch Guard</h4>
+          <div class="mono" style="font-size: 0.9rem; word-break: break-all;">0x4A72158B8859Fc4C9Dd0eB0C593FF07EC5327048</div>
+          <a href="https://polygonscan.com/address/0x4A72158B8859Fc4C9Dd0eB0C593FF07EC5327048" target="_blank" rel="noopener noreferrer" class="btn" style="margin-top: 0.5rem;">View on PolygonScan ↗</a>
+        </div>
+      </div>
+
+      <h3 style="color: var(--accent); margin-bottom: 1rem;">🚀 Launch Timeline</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+        <div class="panel" style="background: var(--panel); padding: 1rem; text-align: center;">
+          <h4 style="color: var(--green);">Phase 1: Friends & Family</h4>
+          <p style="font-size: 1.2rem; font-weight: bold;">September 22, 2025</p>
+          <p>Private early access - TODAY!</p>
+        </div>
+        <div class="panel" style="background: var(--panel); padding: 1rem; text-align: center;">
+          <h4 style="color: var(--violet);">Phase 2: Presale</h4>
+          <p style="font-size: 1.2rem; font-weight: bold;">October 5, 2025</p>
+          <p>Public presale launch</p>
+        </div>
+        <div class="panel" style="background: var(--panel); padding: 1rem; text-align: center;">
+          <h4 style="color: var(--accent);">Phase 3: Main Launch</h4>
+          <p style="font-size: 1.2rem; font-weight: bold;">October 31, 2025</p>
+          <p>Halloween public launch</p>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 2rem;">
+        <a href="#early" class="btn" style="font-size: 1.2rem; padding: 1rem 2rem;">🎃 Buy Early Access Now</a>
+        <p style="margin-top: 1rem; color: var(--muted);">All contracts verified • Full transparency • Ready to launch</p>
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer>
     <div class="wrap row" style="padding-top:0">
       <div>© <span id="yr"></span> $BOO • Built on Polygon</div>
       <div style="display:flex; gap:12px; flex-wrap:wrap">
         <a class="muted" href="#early">Early Access</a>
+        <a class="muted" href="#certificate">Certificate</a>
         <a class="muted" href="#refer">Refer</a>
         <a class="muted" href="#stake">Stake</a>
         <a class="muted" href="#airdrop">Airdrop</a>
@@ -1200,8 +1329,162 @@
     // ===== Load ambassadors on page load =====
     loadAmbassadors();
 
+    // ===== Live Contract Data Integration =====
+    async function loadLiveData() {
+      try {
+        // Check if MetaMask or another wallet is available
+        if (typeof window.ethereum !== 'undefined') {
+          const provider = new ethers.providers.Web3Provider(window.ethereum);
+
+          // Contract addresses
+          const tokenAddress = '0x550f4AF6E9466E4860c1E26509Df72EC30CF72AD';
+          const feeRouterAddress = '0x992f1e349741b5fA61fc7B0c901ee6e5959793Ca';
+
+          // Minimal ABIs for reading data
+          const tokenABI = [
+            "function totalSupply() view returns (uint256)",
+            "function balanceOf(address) view returns (uint256)",
+            "function paused() view returns (bool)"
+          ];
+
+          const feeRouterABI = [
+            "function totalBurned() view returns (uint256)",
+            "function totalFeesCollected() view returns (uint256)"
+          ];
+
+          // Connect to contracts
+          const tokenContract = new ethers.Contract(tokenAddress, tokenABI, provider);
+          const feeRouterContract = new ethers.Contract(feeRouterAddress, feeRouterABI, provider);
+
+          // Read live data
+          const totalSupply = await tokenContract.totalSupply();
+          const ownerBalance = await tokenContract.balanceOf('0x9Dc918deBA2d3fc7128A59852b6699CCb2dC0EDB');
+          const isPaused = await tokenContract.paused();
+
+          let totalBurned = '0';
+          let totalFees = '0';
+          try {
+            totalBurned = await feeRouterContract.totalBurned();
+            totalFees = await feeRouterContract.totalFeesCollected();
+          } catch (e) {
+            // Fee router might not have these functions yet
+            console.log('Fee data not available yet');
+          }
+
+          // Format numbers
+          const formatNumber = (num) => {
+            const val = ethers.utils.formatEther(num);
+            return parseFloat(val).toLocaleString('en-US', { maximumFractionDigits: 2 });
+          };
+
+          // Update UI elements
+          const supplyEl = document.getElementById('totalSupply');
+          const burnedEl = document.getElementById('totalBurned');
+          const feesEl = document.getElementById('totalFees');
+          const statusEl = document.getElementById('contractStatus');
+
+          if (supplyEl) supplyEl.textContent = formatNumber(totalSupply) + ' BOO';
+          if (burnedEl) burnedEl.textContent = formatNumber(totalBurned) + ' BOO';
+          if (feesEl) feesEl.textContent = formatNumber(totalFees) + ' BOO';
+          if (statusEl) {
+            statusEl.textContent = isPaused ? '🔒 Paused (Pre-Launch)' : '🚀 Active';
+            statusEl.style.color = isPaused ? 'var(--red)' : 'var(--green)';
+          }
+
+          console.log('Live data loaded successfully');
+        } else {
+          console.log('Web3 provider not available - showing static data');
+        }
+      } catch (error) {
+        console.error('Error loading live data:', error);
+      }
+    }
+
+    // Load live data on page load
+    loadLiveData();
+
+    // ===== Enhanced Early Access with Swap Integration =====
+    async function initializeEarlyAccess() {
+      const buyBtn = document.getElementById('buyEarlyBtn');
+      const amountInput = document.getElementById('buyAmount');
+      const connectBtn = document.getElementById('connectWalletBtn');
+
+      if (!buyBtn || !connectBtn) return;
+
+      let signer = null;
+      let provider = null;
+
+      // Connect wallet function
+      connectBtn.addEventListener('click', async () => {
+        try {
+          if (typeof window.ethereum === 'undefined') {
+            showToast('Please install MetaMask or another Web3 wallet');
+            return;
+          }
+
+          await window.ethereum.request({ method: 'eth_requestAccounts' });
+          provider = new ethers.providers.Web3Provider(window.ethereum);
+          signer = provider.getSigner();
+
+          const address = await signer.getAddress();
+          connectBtn.textContent = `${address.slice(0, 6)}...${address.slice(-4)}`;
+          connectBtn.style.background = 'var(--green)';
+          showToast('Wallet connected successfully!');
+
+          // Enable buy button
+          buyBtn.disabled = false;
+          buyBtn.textContent = 'Buy Early Access';
+
+        } catch (error) {
+          console.error('Wallet connection failed:', error);
+          showToast('Failed to connect wallet');
+        }
+      });
+
+      // Buy function
+      buyBtn.addEventListener('click', async () => {
+        if (!signer) {
+          showToast('Please connect your wallet first');
+          return;
+        }
+
+        const amount = parseFloat(amountInput?.value || '100');
+        if (amount < 100) {
+          showToast('Minimum purchase: 100 BOO');
+          return;
+        }
+
+        try {
+          buyBtn.disabled = true;
+          buyBtn.textContent = 'Processing...';
+
+          // For now, show a message about early access
+          // In production, this would integrate with a DEX or direct purchase contract
+          showToast(`Early access purchase for ${amount} BOO - Coming soon! Contract is live but purchase flow needs DEX integration.`);
+
+          // Reset button
+          setTimeout(() => {
+            buyBtn.disabled = false;
+            buyBtn.textContent = 'Buy Early Access';
+          }, 2000);
+
+        } catch (error) {
+          console.error('Purchase failed:', error);
+          showToast('Purchase failed - please try again');
+          buyBtn.disabled = false;
+          buyBtn.textContent = 'Buy Early Access';
+        }
+      });
+    }
+
+    // Initialize early access on page load
+    initializeEarlyAccess();
+
     // Year
     document.getElementById('yr').textContent = new Date().getFullYear();
   </script>
+
+  <!-- Load ethers.js for Web3 integration -->
+  <script src="https://cdn.ethers.org/lib/ethers-5.2.umd.min.js"></script>
 </body>
 </html>
