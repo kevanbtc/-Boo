@@ -151,29 +151,6 @@
     /* Sound effects (visual feedback) */
     .sound-wave{position:absolute; opacity:0; pointer-events:none; animation: soundWave 1s ease-out}
     @keyframes soundWave{0%{opacity:1; transform:scale(0)}100%{opacity:0; transform:scale(2)}}
-  </style>
-</head>
-<body>
-  <!-- Enhanced fog layers -->
-  <div class="fog"></div>
-  <div class="fog"></div>
-  <div class="fog"></div>
-
-  <!-- Floating Halloween elements -->
-  <div class="floating-elements">
-    <div class="pumpkin" style="top:20%; left:10%">🎃</div>
-    <div class="ghost" style="top:40%; right:15%">👻</div>
-    <div class="pumpkin" style="top:60%; left:20%">🎃</div>
-    <div class="ghost" style="top:70%; right:25%">👻</div>
-    <div class="spider" style="top:30%; left:80%">🕷️</div>
-    <div class="pumpkin" style="top:80%; left:70%">🎃</div>
-  </div>
-
-  <!-- Enhanced bats -->
-  <canvas id="bats" width="1920" height="1080" aria-hidden="true"></canvas>
-
-  <!-- Spooky random messages -->
-  <div class="spooky-messages" id="spookyMessages"></div>
 
     /* Nav */
     .nav{
@@ -271,9 +248,26 @@
   </style>
 </head>
 <body>
-  <!-- fog + bats -->
+  <!-- Enhanced fog layers -->
   <div class="fog"></div>
+  <div class="fog"></div>
+  <div class="fog"></div>
+
+  <!-- Floating Halloween elements -->
+  <div class="floating-elements">
+    <div class="pumpkin" style="top:20%; left:10%">🎃</div>
+    <div class="ghost" style="top:40%; right:15%">👻</div>
+    <div class="pumpkin" style="top:60%; left:20%">🎃</div>
+    <div class="ghost" style="top:70%; right:25%">👻</div>
+    <div class="spider" style="top:30%; left:80%">🕷️</div>
+    <div class="pumpkin" style="top:80%; left:70%">🎃</div>
+  </div>
+
+  <!-- Enhanced bats -->
   <canvas id="bats" width="1920" height="1080" aria-hidden="true"></canvas>
+
+  <!-- Spooky random messages -->
+  <div class="spooky-messages" id="spookyMessages"></div>
 
   <!-- NAV -->
   <div class="nav">
