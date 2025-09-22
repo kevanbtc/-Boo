@@ -1476,22 +1476,19 @@
 
     // Year
     document.getElementById('yr').textContent = new Date().getFullYear();
-  </script>
 
-  <!-- Load ethers.js for Web3 integration -->
-  <script src="https://cdn.ethers.org/lib/ethers-5.2.umd.min.js"></script>
-  <script>
-    // ===== Additional Web3 functions after ethers.js loads =====
-    window.addEventListener('load', function() {
-      // Re-initialize Web3 functions after ethers.js is loaded
-      if (typeof ethers !== 'undefined') {
-        console.log('ethers.js loaded successfully');
-        loadLiveData();
-        initializeEarlyAccess();
-      } else {
-        console.error('ethers.js failed to load');
-      }
-    });
+    // ===== Load ethers.js and initialize Web3 =====
+    const script = document.createElement('script');
+    script.src = 'https://cdn.ethers.org/lib/ethers-5.2.umd.min.js';
+    script.onload = function() {
+      console.log('ethers.js loaded successfully');
+      loadLiveData();
+      initializeEarlyAccess();
+    };
+    script.onerror = function() {
+      console.error('Failed to load ethers.js');
+    };
+    document.head.appendChild(script);
   </script>
 </body>
 </html>
