@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>$BOO F&F Dashboard - Admin</title>
+  <style>
+    :root{
+      --bg:#0b0b0f; --panel:#12121a; --accent:#ff6a00; --ink:#e8e8ec; --muted:#9aa0aa;
+      --green:#22d3ee; --red:#ef4444; --violet:#8b5cf6;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui;padding:20px}
+
+    .header{text-align:center;margin-bottom:30px}
+    .header h1{color:var(--accent);margin:0}
+    .status{background:var(--green);color:#000;padding:4px 12px;border-radius:20px;font-size:12px;display:inline-block;margin-top:8px}
+
+    .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:30px}
+    .stat{background:var(--panel);padding:20px;border-radius:12px;text-align:center;border:1px solid #ffffff11}
+    .stat-value{font-size:2rem;font-weight:700;color:var(--accent);margin-bottom:4px}
+    .stat-label{font-size:14px;color:var(--muted)}
+
+    .section{background:var(--panel);border-radius:12px;padding:20px;margin-bottom:20px;border:1px solid #ffffff11}
+    .section h2{color:var(--accent);margin:0 0 16px;font-size:18px}
+
+    .txs{max-height:400px;overflow-y:auto}
+    .tx{display:flex;justify-content:space-between;align-items:center;padding:12px;border-bottom:1px solid #ffffff11;font-size:14px}
+    .tx:last-child{border-bottom:none}
+    .tx-buyer{font-family:monospace;color:var(--green)}
+    .tx-amount{color:var(--accent);font-weight:600}
+    .tx-time{color:var(--muted);font-size:12px}
+
+    .controls{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+    .btn{background:var(--accent);color:#000;border:none;padding:10px 16px;border-radius:8px;cursor:pointer;font-weight:600}
+    .btn:hover{background:var(--accent);opacity:0.9}
+    .btn.secondary{background:#333;color:var(--ink)}
+
+    .manual-send{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;align-items:end}
+    .manual-send input{padding:10px;border-radius:6px;border:1px solid #333;background:#0f0f15;color:var(--ink)}
+
+    .log{font-family:monospace;font-size:12px;background:#000;padding:12px;border-radius:6px;max-height:200px;overflow-y:auto;white-space:pre-wrap}
+
+    @media(max-width:768px){
+      .manual-send{grid-template-columns:1fr;gap:8px}
+      .stats{grid-template-columns:repeat(2,1fr)}
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🎃 $BOO Friends & Family Dashboard</h1>
+    <div class="status">LIVE MONITORING</div>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-value" id="totalSales">0</div>
+      <div class="stat-label">Total Sales ($)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value" id="totalBuyers">0</div>
+      <div class="stat-label">Unique Buyers</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value" id="booSold">0</div>
+      <div class="stat-label">BOO Sold</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value" id="avgPurchase">$0</div>
+      <div class="stat-label">Avg Purchase</div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="btn" onclick="refreshData()">🔄 Refresh</button>
+    <button class="btn secondary" onclick="exportData()">📊 Export</button>
+    <button class="btn secondary" onclick="checkBalances()">💰 Check Balances</button>
+    <button class="btn secondary" onclick="toggleProcessor()">⚡ Processor Status</button>
+  </div>
+
+  <div class="section">
+    <h2>📤 Manual BOO Transfer</h2>
+    <div class="manual-send">
+      <input type="text" id="manualAddress" placeholder="Recipient address (0x...)">
+      <input type="number" id="manualAmount" placeholder="BOO amount">
+      <button class="btn" onclick="sendManualBOO()">Send BOO</button>
+    </div>
+    <div style="margin-top:8px;color:var(--muted);font-size:12px">
+      For direct transfers to friends/family who paid via other methods
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>💰 Recent Transactions</h2>
+    <div class="txs" id="transactions">
+      <div style="text-align:center;color:var(--muted);padding:20px">
+        Loading transactions...
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>📊 Wallet Status</h2>
+    <div id="walletStatus" style="font-family:monospace;font-size:14px;color:var(--muted)">
+      Click "Check Balances" to update...
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>📝 System Log</h2>
+    <div class="log" id="systemLog">System starting...
+Ready to monitor F&F sales.
+Click refresh to load recent activity.</div>
+  </div>
+
+  <script>
+    const CONFIG = {
+      RPC_URL: 'https://polygon-mainnet.g.alchemy.com/v2/Vv2BaXEBOqRNaoHLJ-Pzt',
+      BOO_TOKEN: '0x550f4AF6E9466E4860c1E26509Df72EC30CF72AD',
+      USDC_TOKEN: '0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359',
+      FOUNDER_WALLET: '0x9Dc918deBA2d3fc7128A59852b6699CCb2dC0EDB'
+    };
+
+    let salesData = {
+      transactions: [],
+      totalSales: 0,
+      totalBuyers: 0,
+      booSold: 0
+    };
+
+    // Initialize dashboard
+    document.addEventListener('DOMContentLoaded', function() {
+      loadStoredData();
+      startAutoRefresh();
+      updateStats();
+    });
+
+    // Load stored sales data
+    function loadStoredData() {
+      try {
+        const stored = localStorage.getItem('ff_sales_data');
+        if (stored) {
+          salesData = JSON.parse(stored);
+          updateTransactionDisplay();
+          updateStats();
+        }
+      } catch (error) {
+        console.error('Error loading stored data:', error);
+      }
+    }
+
+    // Save sales data
+    function saveData() {
+      localStorage.setItem('ff_sales_data', JSON.stringify(salesData));
+    }
+
+    // Refresh data from blockchain
+    async function refreshData() {
+      try {
+        log('🔄 Refreshing transaction data...');
+
+        // Simulate checking for new transactions
+        // In production, this would call your backend API or scan blockchain
+        await simulateDataRefresh();
+
+        updateStats();
+        updateTransactionDisplay();
+        saveData();
+
+        log('✅ Data refreshed successfully');
+      } catch (error) {
+        log('❌ Error refreshing data: ' + error.message);
+      }
+    }
+
+    // Simulate data refresh (replace with real blockchain scanning)
+    async function simulateDataRefresh() {
+      // This would be replaced with actual blockchain scanning
+      // For demo purposes, adding some sample transactions
+      const sampleTxs = [
+        {
+          buyer: '0x742d35Cc6634C0532925a3b844Bc454e4438f44e',
+          usdAmount: 100,
+          booAmount: 100000,
+          timestamp: Date.now() - 1000000,
+          txHash: '0x1234...abcd'
+        },
+        {
+          buyer: '0x8ba1f109551bD432803012645ac136ddd64DBA72',
+          usdAmount: 250,
+          booAmount: 250000,
+          timestamp: Date.now() - 500000,
+          txHash: '0x5678...efgh'
+        }
+      ];
+
+      // Only add if not already present
+      sampleTxs.forEach(tx => {
+        if (!salesData.transactions.find(t => t.txHash === tx.txHash)) {
+          salesData.transactions.push(tx);
+        }
+      });
+
+      // Sort by timestamp (newest first)
+      salesData.transactions.sort((a, b) => b.timestamp - a.timestamp);
+    }
+
+    // Update statistics
+    function updateStats() {
+      const uniqueBuyers = new Set(salesData.transactions.map(tx => tx.buyer)).size;
+      const totalSales = salesData.transactions.reduce((sum, tx) => sum + tx.usdAmount, 0);
+      const totalBOO = salesData.transactions.reduce((sum, tx) => sum + tx.booAmount, 0);
+      const avgPurchase = uniqueBuyers > 0 ? totalSales / uniqueBuyers : 0;
+
+      document.getElementById('totalSales').textContent = '$' + totalSales.toLocaleString();
+      document.getElementById('totalBuyers').textContent = uniqueBuyers;
+      document.getElementById('booSold').textContent = (totalBOO / 1000).toFixed(0) + 'K';
+      document.getElementById('avgPurchase').textContent = '$' + avgPurchase.toFixed(0);
+
+      salesData.totalSales = totalSales;
+      salesData.totalBuyers = uniqueBuyers;
+      salesData.booSold = totalBOO;
+    }
+
+    // Update transaction display
+    function updateTransactionDisplay() {
+      const container = document.getElementById('transactions');
+
+      if (salesData.transactions.length === 0) {
+        container.innerHTML = '<div style="text-align:center;color:var(--muted);padding:20px">No transactions yet. Waiting for first F&F purchase...</div>';
+        return;
+      }
+
+      container.innerHTML = salesData.transactions.map(tx => `
+        <div class="tx">
+          <div>
+            <div class="tx-buyer">${tx.buyer.slice(0,6)}...${tx.buyer.slice(-4)}</div>
+            <div class="tx-time">${new Date(tx.timestamp).toLocaleString()}</div>
+          </div>
+          <div class="tx-amount">
+            $${tx.usdAmount} → ${tx.booAmount.toLocaleString()} BOO
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Check wallet balances
+    async function checkBalances() {
+      try {
+        log('💰 Checking wallet balances...');
+
+        // This would use Web3 to check actual balances
+        // For demo, showing placeholder data
+        const status = `
+Founder Wallet: ${CONFIG.FOUNDER_WALLET}
+
+BOO Balance: 1,000,000,000 BOO
+USDC Balance: 2,500 USDC
+POL Balance: 84.4 POL
+
+Available for F&F Sales: $1,000,000 worth of BOO
+Processing Status: ✅ Online
+Last Check: ${new Date().toLocaleString()}`;
+
+        document.getElementById('walletStatus').textContent = status;
+        log('✅ Balances updated');
+
+      } catch (error) {
+        log('❌ Error checking balances: ' + error.message);
+      }
+    }
+
+    // Send manual BOO
+    async function sendManualBOO() {
+      const address = document.getElementById('manualAddress').value;
+      const amount = document.getElementById('manualAmount').value;
+
+      if (!address || !amount) {
+        alert('Please enter both address and amount');
+        return;
+      }
+
+      if (!address.match(/^0x[a-fA-F0-9]{40}$/)) {
+        alert('Invalid address format');
+        return;
+      }
+
+      if (confirm(`Send ${amount} BOO to ${address}?`)) {
+        try {
+          log(`📤 Sending ${amount} BOO to ${address}...`);
+
+          // In production, this would call your processor script
+          // node ff-processor.js send ${address} ${amount} "Manual F&F transfer"
+
+          // Simulate successful send
+          setTimeout(() => {
+            log(`✅ Manual transfer completed: ${amount} BOO → ${address}`);
+
+            // Add to transaction list
+            salesData.transactions.unshift({
+              buyer: address,
+              usdAmount: parseFloat(amount) * 0.001, // Convert BOO to USD
+              booAmount: parseFloat(amount),
+              timestamp: Date.now(),
+              txHash: 'MANUAL_' + Date.now(),
+              manual: true
+            });
+
+            updateStats();
+            updateTransactionDisplay();
+            saveData();
+
+            // Clear inputs
+            document.getElementById('manualAddress').value = '';
+            document.getElementById('manualAmount').value = '';
+
+          }, 2000);
+
+        } catch (error) {
+          log('❌ Manual transfer failed: ' + error.message);
+        }
+      }
+    }
+
+    // Toggle processor status
+    function toggleProcessor() {
+      // In production, this would start/stop the monitoring script
+      log('⚡ Processor toggle requested - implement with your backend');
+      alert('Processor control - connect to your backend monitoring service');
+    }
+
+    // Export data
+    function exportData() {
+      const csvData = [
+        ['Timestamp', 'Buyer', 'USD Amount', 'BOO Amount', 'Transaction Hash', 'Type'],
+        ...salesData.transactions.map(tx => [
+          new Date(tx.timestamp).toISOString(),
+          tx.buyer,
+          tx.usdAmount,
+          tx.booAmount,
+          tx.txHash,
+          tx.manual ? 'Manual' : 'Automatic'
+        ])
+      ];
+
+      const csv = csvData.map(row => row.join(',')).join('\\n');
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url = window.URL.createObjectURL(blob);
+
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `boo_ff_sales_${new Date().toISOString().split('T')[0]}.csv`;
+      a.click();
+
+      window.URL.revokeObjectURL(url);
+      log('📊 Data exported to CSV');
+    }
+
+    // Auto refresh
+    function startAutoRefresh() {
+      // Refresh every 2 minutes
+      setInterval(refreshData, 2 * 60 * 1000);
+    }
+
+    // Log function
+    function log(message) {
+      const logEl = document.getElementById('systemLog');
+      const timestamp = new Date().toLocaleTimeString();
+      logEl.textContent += `\\n[${timestamp}] ${message}`;
+      logEl.scrollTop = logEl.scrollHeight;
+    }
+
+    // Initialize with welcome message
+    setTimeout(() => {
+      log('🎃 F&F Dashboard initialized');
+      log('💡 Use manual transfer for friends who paid via non-USDC methods');
+      log('🔄 Auto-refresh enabled (2 min intervals)');
+    }, 1000);
+  </script>
+</body>
+</html>

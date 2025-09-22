@@ -1,7 +1,58 @@
 [build]
   publish = "."
+  command = "echo 'Static site - no build needed'"
 
+[build.environment]
+  NODE_VERSION = "18"
+
+# F&F Site Shortcuts
+[[redirects]]
+  from = "/ff"
+  to = "/friends-family.html"
+  status = 200
+
+[[redirects]]
+  from = "/friends"
+  to = "/friends-family.html"
+  status = 200
+
+[[redirects]]
+  from = "/family"
+  to = "/friends-family.html"
+  status = 200
+
+[[redirects]]
+  from = "/early"
+  to = "/friends-family.html"
+  status = 200
+
+# Dashboard shortcuts
+[[redirects]]
+  from = "/dashboard"
+  to = "/ff-dashboard.html"
+  status = 200
+
+[[redirects]]
+  from = "/admin"
+  to = "/ff-dashboard.html"
+  status = 200
+
+# Default fallback
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=300"

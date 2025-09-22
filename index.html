@@ -444,29 +444,106 @@
         </div>
       </div>
 
-      <div style="text-align: center;">
-        <button id="buyEarlyBtn" class="btn shimmer" style="font-size: 1.3rem; padding: 1.2rem 3rem;" disabled>
-          🎃 Buy Early Access Now
-        </button>
+      <!-- SWAP MODULE -->
+      <div id="swapContainer" style="text-align: center;">
+        <!-- QuickSwap Deep Link (Primary CTA) -->
+        <a class="btn shimmer"
+           style="font-size: 1.3rem; padding: 1.2rem 3rem; margin-bottom: 1rem; display: inline-block;"
+           target="_blank"
+           href="https://quickswap.exchange/#/swap?currency0=0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359&currency1=0x550f4AF6E9466E4860c1E26509Df72EC30CF72AD">
+          🎃 Buy $BOO on QuickSwap
+        </a>
+
+        <!-- Advanced Swap (Embedded) -->
+        <div id="advancedSwap" style="margin-top: 1.5rem; padding: 1rem; background: var(--panel); border-radius: 12px; max-width: 400px; margin-left: auto; margin-right: auto;">
+          <h4 style="margin-bottom: 1rem; color: var(--accent);">🔥 Advanced Swap</h4>
+          <div style="display: flex; gap: 8px; margin-bottom: 1rem;">
+            <input id="swapAmount" type="number" min="25" step="1" placeholder="Amount in USDC"
+                   style="flex: 1; padding: 10px; border-radius: 8px; border: 1px solid #ffffff22; background: #111827; color: #e5e7eb;">
+            <button id="swapBtn" class="btn secondary">Swap</button>
+          </div>
+          <div id="swapMsg" style="font-size: 0.85rem; color: var(--muted); min-height: 20px;"></div>
+        </div>
+
         <p style="margin-top: 1rem; color: var(--muted); font-size: 0.9rem;">
-          DEX integration coming soon. For now, contract is live and verified on PolygonScan.
+          Contract live & verified • Choose your preferred swap method
         </p>
       </div>
     </div>
   </section>
 
-  <!-- REF LINK UTILITY -->
-  <section class="wrap">
-    <h2 class="reveal">Your Early-Access Link</h2>
+  <!-- REFERRAL DASHBOARD -->
+  <section class="wrap" id="refer">
+    <h2 class="reveal">🔗 Referral Dashboard</h2>
+
+    <!-- Connect Wallet Section -->
     <div class="panel reveal">
-      <p class="muted">Paste your wallet address to generate a shareable link. If you have a seed invite, use <b>?ref=SEED</b>.</p>
-      <div style="display:flex; gap:8px; margin-top:10px; flex-wrap:wrap">
-        <input id="addr" placeholder="0xYourAddress..." spellcheck="false"
-               style="flex:1; min-width:260px; padding:12px; border-radius:10px; border:1px solid #ffffff22; background:#0f1220; color:var(--ink)">
-        <button class="btn shimmer" id="makeLink">Generate</button>
-        <button class="btn secondary shimmer" id="copyLink">Copy</button>
+      <div style="text-align: center; margin-bottom: 1.5rem;">
+        <button id="refConnectBtn" class="btn" style="font-size: 1.1rem; padding: 0.8rem 2rem;">
+          Connect Wallet to Load Stats
+        </button>
       </div>
-      <div style="margin-top:10px" class="mono" id="linkOut">Link will appear here…</div>
+
+      <!-- Stats Dashboard (Hidden until connected) -->
+      <div id="refStatsContainer" style="display: none;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+          <div style="background: var(--panel); padding: 1rem; border-radius: 8px; text-align: center;">
+            <h4 style="color: var(--green); margin-bottom: 0.5rem;">30-Day Volume</h4>
+            <div id="refVolume" style="font-size: 1.5rem; font-weight: bold;">—</div>
+            <div style="font-size: 0.8rem; color: var(--muted);">BOO referred</div>
+          </div>
+          <div style="background: var(--panel); padding: 1rem; border-radius: 8px; text-align: center;">
+            <h4 style="color: var(--accent); margin-bottom: 0.5rem;">Current Tier</h4>
+            <div id="refTier" style="font-size: 1.5rem; font-weight: bold;">—</div>
+            <div id="refBps" style="font-size: 0.8rem; color: var(--muted);">— commission</div>
+          </div>
+          <div style="background: var(--panel); padding: 1rem; border-radius: 8px; text-align: center;">
+            <h4 style="color: var(--violet); margin-bottom: 0.5rem;">Next Tier</h4>
+            <div id="refNextTarget" style="font-size: 1.5rem; font-weight: bold;">—</div>
+            <div style="font-size: 0.8rem; color: var(--muted);">BOO needed</div>
+          </div>
+        </div>
+
+        <!-- Link Generation & Sharing -->
+        <div style="background: #0f1419; padding: 1.5rem; border-radius: 10px; border: 1px solid var(--accent);">
+          <h4 style="margin-bottom: 1rem; color: var(--accent);">📨 Your Referral Tools</h4>
+          <div style="display: flex; gap: 8px; margin-bottom: 1rem; flex-wrap: wrap;">
+            <button id="copyLinkBtn" class="btn" style="flex: 1; min-width: 150px;">Copy My Link</button>
+            <button id="qrCodeBtn" class="btn secondary" style="flex: 1; min-width: 150px;">Generate QR</button>
+            <button id="tweetBtn" class="btn secondary" style="flex: 1; min-width: 150px;">Tweet It</button>
+          </div>
+          <div id="refLink" style="font-family: monospace; font-size: 0.85rem; color: var(--muted); word-break: break-all; background: #1a1a1a; padding: 8px; border-radius: 6px;">
+            Connect wallet to generate your link...
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tier Explanation -->
+    <div class="panel reveal" style="margin-top: 1.5rem;">
+      <h3 style="color: var(--accent); margin-bottom: 1rem;">🏆 Referral Tiers</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+        <div style="background: #1a1a1a; padding: 1rem; border-radius: 8px; text-align: center;">
+          <h4 style="color: var(--muted);">Base Tier</h4>
+          <div style="font-size: 1.2rem; font-weight: bold; color: var(--green);">1.5%</div>
+          <div style="font-size: 0.8rem; color: var(--muted);">0 - 999 BOO</div>
+        </div>
+        <div style="background: #1a1a1a; padding: 1rem; border-radius: 8px; text-align: center;">
+          <h4 style="color: #fbbf24;">Tier 3</h4>
+          <div style="font-size: 1.2rem; font-weight: bold; color: var(--green);">2.0%</div>
+          <div style="font-size: 0.8rem; color: var(--muted);">1,000+ BOO</div>
+        </div>
+        <div style="background: #1a1a1a; padding: 1rem; border-radius: 8px; text-align: center;">
+          <h4 style="color: #8b5cf6;">Tier 2</h4>
+          <div style="font-size: 1.2rem; font-weight: bold; color: var(--green);">2.5%</div>
+          <div style="font-size: 0.8rem; color: var(--muted);">25,000+ BOO</div>
+        </div>
+        <div style="background: #1a1a1a; padding: 1rem; border-radius: 8px; text-align: center;">
+          <h4 style="color: #ef4444;">Tier 1</h4>
+          <div style="font-size: 1.2rem; font-weight: bold; color: var(--green);">3.0%</div>
+          <div style="font-size: 0.8rem; color: var(--muted);">100,000+ BOO</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1477,6 +1554,213 @@
     // Year
     document.getElementById('yr').textContent = new Date().getFullYear();
 
+    // ===== ENHANCED SWAP FUNCTIONALITY =====
+    const USDC = "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359";
+    const BOO = "0x550f4AF6E9466E4860c1E26509Df72EC30CF72AD";
+    const REF_REGISTRY = "0xbeeE2b44Fa90F2E0A1c9240Fd5483292b2c52fbe";
+
+    async function ensureWallet() {
+      if (!window.ethereum) throw new Error("No wallet found - install MetaMask");
+      const [addr] = await ethereum.request({ method: "eth_requestAccounts" });
+      const chainId = await ethereum.request({ method: "eth_chainId" });
+      if (chainId !== "0x89") {
+        await ethereum.request({
+          method: "wallet_switchEthereumChain",
+          params: [{ chainId: "0x89" }]
+        });
+      }
+      return addr;
+    }
+
+    async function executeSwap() {
+      const msg = (t) => document.getElementById('swapMsg').textContent = t;
+      const btn = document.getElementById('swapBtn');
+      const originalText = btn.textContent;
+
+      try {
+        btn.textContent = 'Connecting...';
+        btn.disabled = true;
+
+        const from = await ensureWallet();
+        const usdc = document.getElementById('swapAmount').value;
+
+        if (!usdc || Number(usdc) < 1) throw new Error("Enter USDC amount (>=1)");
+
+        msg('Finding best route...');
+        const sellAmount = BigInt(Math.floor(Number(usdc) * 1e6)).toString();
+        const qs = new URLSearchParams({
+          buyToken: BOO,
+          sellToken: USDC,
+          sellAmount,
+          takerAddress: from
+        });
+
+        const r = await fetch(`https://polygon.api.0x.org/swap/v1/quote?${qs}`);
+        if (!r.ok) {
+          const e = await r.text();
+          throw new Error(e.slice(0, 200));
+        }
+
+        const q = await r.json();
+        msg(`Route: ~${(Number(q.buyAmount) / 1e18).toFixed(0)} BOO`);
+
+        // Check and approve allowance if needed
+        if (q.allowanceTarget) {
+          const allowance = await ethereum.request({
+            method: "eth_call",
+            params: [{
+              to: USDC,
+              data: "0xdd62ed3e" + from.slice(2).padStart(64, '0') + q.allowanceTarget.slice(2).padStart(64, '0')
+            }, "latest"]
+          });
+
+          if (BigInt(allowance) < BigInt(sellAmount)) {
+            msg('Approving USDC...');
+            await ethereum.request({
+              method: "eth_sendTransaction",
+              params: [{
+                from,
+                to: USDC,
+                data: "0x095ea7b3" + q.allowanceTarget.slice(2).padStart(64, '0') + (2n**256n-1n).toString(16).padStart(64, '0')
+              }]
+            });
+          }
+        }
+
+        // Execute swap
+        msg('Executing swap...');
+        btn.textContent = 'Swapping...';
+        await ethereum.request({
+          method: "eth_sendTransaction",
+          params: [{
+            from,
+            to: q.to,
+            data: q.data,
+            value: q.value || "0x0"
+          }]
+        });
+
+        msg("✅ Swap sent! Check wallet for $BOO");
+        showToast("Swap successful! Welcome to the BOO army! 🎃");
+
+      } catch (e) {
+        msg("❌ Swap failed: " + (e.message || e));
+        console.error('Swap error:', e);
+      } finally {
+        btn.textContent = originalText;
+        btn.disabled = false;
+      }
+    }
+
+    // ===== REFERRAL DASHBOARD FUNCTIONALITY =====
+    const refAbi = [
+      "event AffiliateCommission(address indexed referrer, uint256 volumeAfter, uint256 bpsApplied, uint256 commission)",
+      "function rollingRefVolume(address referrer, uint256 lookback) view returns (uint256)"
+    ];
+
+    async function loadReferralStats(addr) {
+      const out = (html) => {
+        document.getElementById('refStatsContainer').style.display = 'block';
+        document.getElementById('refVolume').textContent = html.volume || '0';
+        document.getElementById('refTier').textContent = html.tier || 'Base';
+        document.getElementById('refBps').textContent = html.bps || '1.5% commission';
+        document.getElementById('refNextTarget').textContent = html.next || '1,000';
+        document.getElementById('refLink').textContent = html.link || 'Loading...';
+      };
+
+      try {
+        const provider = new ethers.providers.JsonRpcProvider("https://polygon-rpc.com");
+        let vol30 = 0n;
+
+        try {
+          // Try on-chain view first
+          const reg = new ethers.Contract(REF_REGISTRY, refAbi, provider);
+          vol30 = await reg.rollingRefVolume(addr, 30n * 24n * 3600n);
+        } catch {
+          // Fallback: scan recent events (~30 days)
+          const latest = await provider.getBlockNumber();
+          const blocks30d = Math.floor((30 * 24 * 3600) / 2);
+          const fromBlock = Math.max(0, latest - blocks30d);
+
+          const topic = ethers.utils.id("AffiliateCommission(address,uint256,uint256,uint256)");
+          const logs = await provider.getLogs({
+            address: REF_REGISTRY,
+            fromBlock,
+            toBlock: "latest",
+            topics: [topic, ethers.utils.hexZeroPad(addr, 32)]
+          });
+
+          for (const l of logs) {
+            const parsed = ethers.utils.defaultAbiCoder.decode(["uint256", "uint256", "uint256"], "0x" + l.data.slice(2));
+            vol30 = parsed[0]; // volumeAfter (latest cumulative)
+          }
+        }
+
+        const vol = Number(vol30) / 1e18;
+        let tier = { name: "Base", bps: 150, next: 1000 - Math.min(vol, 1000) };
+
+        if (vol >= 100000) tier = { name: "Tier 1", bps: 300, next: 0 };
+        else if (vol >= 25000) tier = { name: "Tier 2", bps: 250, next: 100000 - vol };
+        else if (vol >= 1000) tier = { name: "Tier 3", bps: 200, next: 25000 - vol };
+
+        const refLink = `${location.origin}/early?ref=${addr}`;
+
+        out({
+          volume: vol.toLocaleString(),
+          tier: tier.name,
+          bps: `${(tier.bps / 100).toFixed(2)}% commission`,
+          next: Math.max(0, Math.ceil(tier.next)).toLocaleString(),
+          link: refLink
+        });
+
+        // Set up link tools
+        document.getElementById('copyLinkBtn').onclick = () => {
+          navigator.clipboard.writeText(refLink);
+          showToast("Link copied! 📋");
+        };
+
+        document.getElementById('qrCodeBtn').onclick = () => showQR(refLink);
+
+        document.getElementById('tweetBtn').onclick = () => {
+          const text = `Join the $BOO Halloween revolution! 🎃\n\nEarn while you refer friends to the spookiest meme token on Polygon.\n\n✨ 0.5% fees, 20% burn, staking rewards\n✨ Tiered affiliates up to 3%\n\nGet in early:`;
+          window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(refLink)}`);
+        };
+
+      } catch (error) {
+        console.error('Referral stats error:', error);
+        document.getElementById('refVolume').textContent = 'Error';
+        document.getElementById('refTier').textContent = 'N/A';
+        document.getElementById('refBps').textContent = 'Unable to load';
+      }
+    }
+
+    // ===== EVENT LISTENERS =====
+    function initializeSwapAndReferral() {
+      // Swap functionality
+      const swapBtn = document.getElementById('swapBtn');
+      if (swapBtn) {
+        swapBtn.addEventListener('click', executeSwap);
+      }
+
+      // Referral dashboard
+      const refConnectBtn = document.getElementById('refConnectBtn');
+      if (refConnectBtn) {
+        refConnectBtn.addEventListener('click', async () => {
+          try {
+            refConnectBtn.textContent = 'Connecting...';
+            refConnectBtn.disabled = true;
+            const addr = await ensureWallet();
+            refConnectBtn.textContent = `Connected: ${addr.slice(0, 6)}...${addr.slice(-4)}`;
+            loadReferralStats(addr);
+          } catch (error) {
+            refConnectBtn.textContent = 'Connect Wallet to Load Stats';
+            refConnectBtn.disabled = false;
+            showToast('Connection failed: ' + error.message);
+          }
+        });
+      }
+    }
+
     // ===== Load ethers.js and initialize Web3 =====
     const script = document.createElement('script');
     script.src = 'https://cdn.ethers.org/lib/ethers-5.2.umd.min.js';
@@ -1484,6 +1768,7 @@
       console.log('ethers.js loaded successfully');
       loadLiveData();
       initializeEarlyAccess();
+      initializeSwapAndReferral();
     };
     script.onerror = function() {
       console.error('Failed to load ethers.js');

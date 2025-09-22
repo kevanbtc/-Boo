@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>$BOO Friends & Family - Early Access Live Now!</title>
+  <meta name="description" content="🎃 Exclusive early access to $BOO token. $0.001 per BOO, direct from founder. Limited Friends & Family only!" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b0b0f;
+      --panel:#12121a;
+      --accent:#ff6a00;
+      --accent-2:#ffa94d;
+      --ink:#e8e8ec;
+      --muted:#9aa0aa;
+      --green:#22d3ee;
+      --violet:#8b5cf6;
+      --red:#ef4444;
+      --glow: 0 0 24px #ff6a00aa, 0 0 48px #ff6a0055;
+      --pumpkin: #ff8c00;
+      --ghost: #f8f8ff;
+      --blood: #8b0000;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: radial-gradient(1200px 500px at 50% -10%, #1a1320 0%, transparent 60%), var(--bg);
+      color:var(--ink);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      overflow-x:hidden;
+    }
+
+    /* Header */
+    .header{position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);background:#0b0b0fcc;border-bottom:1px solid #ffffff1a}
+    .nav{display:flex;justify-content:space-between;align-items:center;padding:12px 20px;max-width:1200px;margin:0 auto}
+    .logo{font-size:24px;font-weight:900;color:var(--accent)}
+    .status{background:var(--green);color:#000;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.7}}
+
+    /* Hero */
+    .hero{text-align:center;padding:60px 20px;max-width:800px;margin:0 auto}
+    .hero h1{font-size:3.5rem;font-weight:900;margin:0 0 16px;background:linear-gradient(135deg,var(--accent),var(--accent-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.1}
+    .hero .subtitle{font-size:1.2rem;color:var(--muted);margin-bottom:32px}
+    .hero .price{font-size:2rem;font-weight:700;color:var(--green);margin:16px 0}
+
+    /* Purchase Section */
+    .purchase{background:var(--panel);border:2px solid var(--accent);border-radius:16px;padding:32px;margin:40px auto;max-width:500px;box-shadow:var(--glow)}
+    .purchase h2{text-align:center;color:var(--accent);margin-bottom:24px}
+    .input-group{margin-bottom:20px}
+    .input-group label{display:block;margin-bottom:8px;font-weight:600;color:var(--ink)}
+    .input-group input, .input-group select{width:100%;padding:12px;border-radius:8px;border:1px solid #ffffff22;background:#0f0f15;color:var(--ink);font-size:16px}
+    .input-group input:focus, .input-group select:focus{outline:none;border-color:var(--accent)}
+
+    .amount-buttons{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
+    .amount-btn{padding:8px;border:1px solid #ffffff22;background:#1a1a1a;color:var(--ink);border-radius:6px;cursor:pointer;text-align:center;font-size:14px;transition:all 0.2s}
+    .amount-btn:hover, .amount-btn.active{background:var(--accent);color:#000;border-color:var(--accent)}
+
+    .calc-display{background:#0a0a0a;border:1px solid #ffffff11;border-radius:8px;padding:16px;margin:16px 0;font-family:monospace}
+    .calc-row{display:flex;justify-content:space-between;margin:4px 0}
+    .calc-total{border-top:1px solid #ffffff22;padding-top:8px;font-weight:700;color:var(--green)}
+
+    .btn{background:var(--accent);color:#000;border:none;border-radius:10px;padding:16px 32px;font-weight:700;font-size:16px;cursor:pointer;transition:all 0.3s;width:100%;margin:16px 0}
+    .btn:hover{background:var(--accent-2);transform:translateY(-2px);box-shadow:0 8px 24px #ff6a0033}
+    .btn:disabled{background:#333;color:#666;cursor:not-allowed;transform:none;box-shadow:none}
+    .btn.secondary{background:#333;color:var(--ink);border:1px solid #ffffff22}
+    .btn.secondary:hover{background:#444}
+
+    /* Status Messages */
+    .status-msg{padding:12px;border-radius:8px;margin:12px 0;font-weight:600}
+    .status-msg.success{background:#22d3ee22;border:1px solid #22d3ee;color:#22d3ee}
+    .status-msg.error{background:#ef444422;border:1px solid #ef4444;color:#ef4444}
+    .status-msg.info{background:#8b5cf622;border:1px solid #8b5cf6;color:#8b5cf6}
+
+    /* How It Works */
+    .how-it-works{background:var(--panel);border-radius:12px;padding:32px;margin:40px auto;max-width:800px}
+    .how-it-works h2{text-align:center;color:var(--accent);margin-bottom:24px}
+    .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px;margin-top:24px}
+    .step{text-align:center;padding:20px}
+    .step-number{background:var(--accent);color:#000;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;margin:0 auto 12px}
+    .step h3{color:var(--ink);margin:8px 0}
+    .step p{color:var(--muted);font-size:14px}
+
+    /* Referral Section */
+    .referral{background:linear-gradient(135deg,#8b5cf622,#22d3ee22);border:1px solid #8b5cf6;border-radius:12px;padding:32px;margin:40px auto;max-width:600px}
+    .referral h2{text-align:center;color:var(--violet);margin-bottom:16px}
+    .referral-input{display:flex;gap:8px;margin:16px 0}
+    .referral-input input{flex:1}
+    .share-buttons{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}
+
+    /* Footer */
+    .footer{text-align:center;padding:40px 20px;border-top:1px solid #ffffff1a;margin-top:60px}
+    .footer-links{display:flex;justify-content:center;gap:24px;margin-bottom:16px;flex-wrap:wrap}
+    .footer-links a{color:var(--muted);text-decoration:none;font-size:14px}
+    .footer-links a:hover{color:var(--accent)}
+
+    /* Responsive */
+    @media(max-width:768px){
+      .hero h1{font-size:2.5rem}
+      .amount-buttons{grid-template-columns:repeat(2,1fr)}
+      .nav{flex-direction:column;gap:12px}
+    }
+
+    /* Animations */
+    .fade-in{animation:fadeIn 0.5s ease-in-out}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+    /* Toast */
+    .toast{position:fixed;top:20px;right:20px;background:var(--accent);color:#000;padding:12px 16px;border-radius:8px;font-weight:600;z-index:1000;transform:translateX(400px);transition:transform 0.3s}
+    .toast.show{transform:translateX(0)}
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <nav class="nav">
+      <div class="logo">🎃 $BOO</div>
+      <div class="status">FRIENDS & FAMILY LIVE</div>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>$BOO Token<br>Friends & Family</h1>
+    <p class="subtitle">🎃 Exclusive early access for inner circle only<br>Limited time - Direct from founder</p>
+    <div class="price">$0.001 per BOO</div>
+    <p style="color:var(--muted);font-size:14px">No DEX fees • Instant delivery • Personal allocation</p>
+  </section>
+
+  <!-- Purchase Section -->
+  <section class="purchase">
+    <h2>🔥 Buy $BOO Now</h2>
+
+    <div class="input-group">
+      <label>Payment Method</label>
+      <select id="paymentMethod">
+        <option value="usdc">USDC (Polygon)</option>
+        <option value="pol">POL (Polygon)</option>
+        <option value="eth">ETH (Polygon)</option>
+      </select>
+    </div>
+
+    <div class="input-group">
+      <label>Purchase Amount</label>
+      <div class="amount-buttons">
+        <div class="amount-btn" data-usd="25">$25</div>
+        <div class="amount-btn" data-usd="50">$50</div>
+        <div class="amount-btn" data-usd="100">$100</div>
+        <div class="amount-btn" data-usd="250">$250</div>
+        <div class="amount-btn" data-usd="500">$500</div>
+        <div class="amount-btn" data-usd="1000">$1K</div>
+        <div class="amount-btn" data-usd="2500">$2.5K</div>
+        <div class="amount-btn" data-usd="5000">$5K</div>
+      </div>
+      <input type="number" id="customAmount" placeholder="Or enter custom amount in USD" min="25" step="1">
+    </div>
+
+    <div class="calc-display">
+      <div class="calc-row">
+        <span>USD Amount:</span>
+        <span id="usdAmount">$0</span>
+      </div>
+      <div class="calc-row">
+        <span>BOO Tokens:</span>
+        <span id="booAmount">0 BOO</span>
+      </div>
+      <div class="calc-row">
+        <span>Payment Required:</span>
+        <span id="paymentAmount">0 USDC</span>
+      </div>
+      <div class="calc-row calc-total">
+        <span>You Receive:</span>
+        <span id="totalBoo">0 BOO</span>
+      </div>
+    </div>
+
+    <button id="connectWallet" class="btn">Connect Wallet</button>
+    <button id="purchaseBtn" class="btn" style="display:none" disabled>Purchase BOO</button>
+
+    <div id="statusMsg" class="status-msg" style="display:none"></div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-it-works">
+    <h2>How Friends & Family Works</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>Connect Wallet</h3>
+        <p>Connect your Polygon wallet (MetaMask recommended)</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>Choose Amount</h3>
+        <p>Select your purchase amount ($25 minimum)</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>Send Payment</h3>
+        <p>Pay with USDC/POL/ETH on Polygon network</p>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <h3>Receive BOO</h3>
+        <p>BOO tokens sent directly to your wallet instantly</p>
+      </div>
+    </div>
+
+    <div style="background:#0a0a0a;border-radius:8px;padding:16px;margin-top:24px;text-align:center">
+      <h4 style="color:var(--accent);margin-bottom:8px">⚡ Why Friends & Family?</h4>
+      <p style="color:var(--muted);font-size:14px;margin:0">Get $BOO before public launch • No DEX slippage • Direct founder allocation • Personal referral link included • Access to ambassador program</p>
+    </div>
+  </section>
+
+  <!-- Referral Section -->
+  <section class="referral">
+    <h2>🔗 Your Referral Link</h2>
+    <p style="text-align:center;color:var(--muted);margin-bottom:20px">Share with friends and earn commissions on their purchases</p>
+
+    <div class="referral-input">
+      <input type="text" id="referralLink" placeholder="Connect wallet to generate your link..." readonly>
+      <button id="copyLink" class="btn secondary">Copy</button>
+    </div>
+
+    <div class="share-buttons">
+      <button id="shareTwitter" class="btn secondary">Tweet</button>
+      <button id="shareQR" class="btn secondary">QR Code</button>
+      <button id="shareTelegram" class="btn secondary">Telegram</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="https://polygonscan.com/address/0x550f4AF6E9466E4860c1E26509Df72EC30CF72AD" target="_blank">Contract</a>
+      <a href="index.html">Full Site</a>
+      <a href="#" id="contactFounder">Contact Founder</a>
+    </div>
+    <p style="color:var(--muted);font-size:12px">© 2025 $BOO • Friends & Family Access • Built on Polygon</p>
+  </footer>
+
+  <!-- Toast Container -->
+  <div id="toast" class="toast"></div>
+
+  <script>
+    // Contract addresses and configuration
+    const CONFIG = {
+      BOO_TOKEN: "0x550f4AF6E9466E4860c1E26509Df72EC30CF72AD",
+      USDC: "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359",
+      FOUNDER_WALLET: "0x9Dc918deBA2d3fc7128A59852b6699CCb2dC0EDB",
+      POLYGON_RPC: "https://polygon-rpc.com",
+      BOO_PRICE: 0.001, // $0.001 per BOO
+      MIN_PURCHASE: 25, // $25 minimum
+    };
+
+    let userWallet = null;
+    let currentAmount = 0;
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+      setupEventListeners();
+      checkUrlParams();
+      loadPriceData();
+    });
+
+    // Event Listeners
+    function setupEventListeners() {
+      // Amount buttons
+      document.querySelectorAll('.amount-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const amount = parseInt(btn.dataset.usd);
+          setAmount(amount);
+          updateActiveButton(btn);
+        });
+      });
+
+      // Custom amount input
+      document.getElementById('customAmount').addEventListener('input', (e) => {
+        const amount = parseFloat(e.target.value) || 0;
+        setAmount(amount);
+        updateActiveButton(null);
+      });
+
+      // Payment method change
+      document.getElementById('paymentMethod').addEventListener('change', updateCalculations);
+
+      // Wallet connection
+      document.getElementById('connectWallet').addEventListener('click', connectWallet);
+      document.getElementById('purchaseBtn').addEventListener('click', executePurchase);
+
+      // Referral actions
+      document.getElementById('copyLink').addEventListener('click', copyReferralLink);
+      document.getElementById('shareTwitter').addEventListener('click', shareOnTwitter);
+      document.getElementById('shareQR').addEventListener('click', generateQR);
+      document.getElementById('shareTelegram').addEventListener('click', shareOnTelegram);
+    }
+
+    // Check URL for referral
+    function checkUrlParams() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const ref = urlParams.get('ref');
+      if (ref) {
+        localStorage.setItem('referrer', ref);
+        showToast(`🎉 Welcome! You're referred by ${ref.slice(0,6)}...${ref.slice(-4)}`);
+      }
+    }
+
+    // Set purchase amount
+    function setAmount(amount) {
+      currentAmount = amount;
+      document.getElementById('customAmount').value = amount > 0 ? amount : '';
+      updateCalculations();
+    }
+
+    // Update active button
+    function updateActiveButton(activeBtn) {
+      document.querySelectorAll('.amount-btn').forEach(btn => btn.classList.remove('active'));
+      if (activeBtn) activeBtn.classList.add('active');
+    }
+
+    // Update calculations
+    function updateCalculations() {
+      const usdAmount = currentAmount;
+      const booAmount = usdAmount / CONFIG.BOO_PRICE;
+      const paymentMethod = document.getElementById('paymentMethod').value;
+
+      document.getElementById('usdAmount').textContent = `$${usdAmount.toLocaleString()}`;
+      document.getElementById('booAmount').textContent = `${booAmount.toLocaleString()} BOO`;
+      document.getElementById('totalBoo').textContent = `${booAmount.toLocaleString()} BOO`;
+
+      // For now, assume 1:1 USD for simplicity (in production, get real rates)
+      let paymentToken = 'USDC';
+      let paymentAmountValue = usdAmount;
+
+      if (paymentMethod === 'pol') {
+        paymentToken = 'POL';
+        // Rough POL price estimation - in production, get from DEX
+        paymentAmountValue = (usdAmount / 0.5).toFixed(2); // Assume $0.50 per POL
+      } else if (paymentMethod === 'eth') {
+        paymentToken = 'ETH';
+        paymentAmountValue = (usdAmount / 2500).toFixed(4); // Assume $2500 per ETH
+      }
+
+      document.getElementById('paymentAmount').textContent = `${paymentAmountValue} ${paymentToken}`;
+
+      // Enable/disable purchase button
+      const purchaseBtn = document.getElementById('purchaseBtn');
+      if (userWallet && usdAmount >= CONFIG.MIN_PURCHASE) {
+        purchaseBtn.disabled = false;
+        purchaseBtn.textContent = `Buy ${booAmount.toLocaleString()} BOO`;
+      } else {
+        purchaseBtn.disabled = true;
+        purchaseBtn.textContent = usdAmount < CONFIG.MIN_PURCHASE ? `Minimum $${CONFIG.MIN_PURCHASE}` : 'Enter Amount';
+      }
+    }
+
+    // Connect wallet
+    async function connectWallet() {
+      try {
+        if (!window.ethereum) {
+          showToast('Please install MetaMask to continue', 'error');
+          return;
+        }
+
+        const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+        const chainId = await ethereum.request({ method: 'eth_chainId' });
+
+        // Switch to Polygon if needed
+        if (chainId !== '0x89') {
+          await ethereum.request({
+            method: 'wallet_switchEthereumChain',
+            params: [{ chainId: '0x89' }],
+          });
+        }
+
+        userWallet = accounts[0];
+        document.getElementById('connectWallet').style.display = 'none';
+        document.getElementById('purchaseBtn').style.display = 'block';
+
+        generateReferralLink();
+        updateCalculations();
+
+        showToast(`Connected: ${userWallet.slice(0,6)}...${userWallet.slice(-4)}`, 'success');
+
+      } catch (error) {
+        console.error('Wallet connection failed:', error);
+        showToast('Wallet connection failed. Please try again.', 'error');
+      }
+    }
+
+    // Execute purchase
+    async function executePurchase() {
+      if (!userWallet || currentAmount < CONFIG.MIN_PURCHASE) return;
+
+      const statusMsg = document.getElementById('statusMsg');
+      const purchaseBtn = document.getElementById('purchaseBtn');
+
+      try {
+        purchaseBtn.disabled = true;
+        purchaseBtn.textContent = 'Processing...';
+
+        statusMsg.className = 'status-msg info';
+        statusMsg.textContent = '⏳ Processing purchase...';
+        statusMsg.style.display = 'block';
+
+        const paymentMethod = document.getElementById('paymentMethod').value;
+        const booAmount = currentAmount / CONFIG.BOO_PRICE;
+
+        // Get payment amount in selected token
+        let paymentAmount, paymentToken;
+        if (paymentMethod === 'usdc') {
+          paymentAmount = currentAmount * 1e6; // USDC has 6 decimals
+          paymentToken = CONFIG.USDC;
+        } else if (paymentMethod === 'pol') {
+          paymentAmount = (currentAmount / 0.5) * 1e18; // Estimate POL amount
+          paymentToken = '0x0000000000000000000000000000000000000000'; // ETH/POL
+        } else {
+          // For now, redirect to founder contact for non-USDC
+          statusMsg.className = 'status-msg info';
+          statusMsg.textContent = '📞 For POL/ETH purchases, please contact founder directly.';
+
+          // Open contact
+          const message = `Hi! I want to buy ${booAmount.toLocaleString()} BOO tokens for $${currentAmount} using ${paymentMethod.toUpperCase()}. My wallet: ${userWallet}`;
+          window.open(`https://t.me/yourhandle?text=${encodeURIComponent(message)}`);
+          return;
+        }
+
+        // For USDC purchases, handle the transfer
+        if (paymentMethod === 'usdc') {
+          await handleUSDCPurchase(paymentAmount, booAmount);
+        }
+
+      } catch (error) {
+        console.error('Purchase failed:', error);
+        statusMsg.className = 'status-msg error';
+        statusMsg.textContent = '❌ Purchase failed. Please try again or contact support.';
+      } finally {
+        purchaseBtn.disabled = false;
+        purchaseBtn.textContent = `Buy ${(currentAmount / CONFIG.BOO_PRICE).toLocaleString()} BOO`;
+      }
+    }
+
+    // Handle USDC purchase
+    async function handleUSDCPurchase(usdcAmount, booAmount) {
+      const statusMsg = document.getElementById('statusMsg');
+
+      try {
+        // Check USDC balance
+        statusMsg.textContent = '🔍 Checking USDC balance...';
+
+        // Get USDC balance (simplified - in production use proper contract calls)
+        const usdcBalance = await ethereum.request({
+          method: 'eth_call',
+          params: [{
+            to: CONFIG.USDC,
+            data: '0x70a08231' + userWallet.slice(2).padStart(64, '0')
+          }, 'latest']
+        });
+
+        const balance = parseInt(usdcBalance, 16);
+        if (balance < usdcAmount) {
+          statusMsg.className = 'status-msg error';
+          statusMsg.textContent = `❌ Insufficient USDC balance. Need ${(usdcAmount/1e6).toFixed(2)} USDC.`;
+          return;
+        }
+
+        // Send USDC to founder
+        statusMsg.textContent = '💰 Sending USDC payment...';
+
+        const transferData = '0xa9059cbb' + // transfer function
+          CONFIG.FOUNDER_WALLET.slice(2).padStart(64, '0') + // to address
+          usdcAmount.toString(16).padStart(64, '0'); // amount
+
+        const txHash = await ethereum.request({
+          method: 'eth_sendTransaction',
+          params: [{
+            from: userWallet,
+            to: CONFIG.USDC,
+            data: transferData,
+            gas: '0x15F90', // 90000 gas
+          }]
+        });
+
+        statusMsg.textContent = '⏳ Payment sent! Waiting for confirmation...';
+
+        // Wait for confirmation (simplified)
+        setTimeout(() => {
+          statusMsg.className = 'status-msg success';
+          statusMsg.textContent = `✅ Purchase complete! ${booAmount.toLocaleString()} BOO will be sent to your wallet within 24 hours.`;
+
+          // Record purchase (you can implement backend tracking here)
+          recordPurchase(userWallet, currentAmount, booAmount, txHash);
+
+          showToast('🎉 Purchase successful! BOO tokens incoming!', 'success');
+        }, 3000);
+
+      } catch (error) {
+        throw error;
+      }
+    }
+
+    // Record purchase for tracking
+    function recordPurchase(buyer, usdAmount, booAmount, txHash) {
+      const purchase = {
+        buyer,
+        usdAmount,
+        booAmount,
+        txHash,
+        timestamp: Date.now(),
+        referrer: localStorage.getItem('referrer') || null
+      };
+
+      // Store locally for now (implement backend in production)
+      const purchases = JSON.parse(localStorage.getItem('purchases') || '[]');
+      purchases.push(purchase);
+      localStorage.setItem('purchases', JSON.stringify(purchases));
+
+      console.log('Purchase recorded:', purchase);
+    }
+
+    // Generate referral link
+    function generateReferralLink() {
+      if (!userWallet) return;
+
+      const baseUrl = window.location.origin + window.location.pathname;
+      const referralLink = `${baseUrl}?ref=${userWallet}`;
+
+      document.getElementById('referralLink').value = referralLink;
+    }
+
+    // Referral actions
+    function copyReferralLink() {
+      const link = document.getElementById('referralLink').value;
+      if (!link) return;
+
+      navigator.clipboard.writeText(link);
+      showToast('📋 Referral link copied!', 'success');
+    }
+
+    function shareOnTwitter() {
+      const link = document.getElementById('referralLink').value;
+      if (!link) return;
+
+      const text = `🎃 Just got early access to $BOO token! Friends & Family only - get in before public launch!\n\n✨ $0.001 per BOO\n✨ Direct from founder\n✨ No DEX fees\n\nGet yours:`;
+      window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(link)}`);
+    }
+
+    function shareOnTelegram() {
+      const link = document.getElementById('referralLink').value;
+      if (!link) return;
+
+      const text = `🎃 $BOO Token Friends & Family Access!\n\nExclusive early access at $0.001 per BOO. Direct from founder, no DEX fees!\n\nGet yours: ${link}`;
+      window.open(`https://t.me/share/url?url=${encodeURIComponent(link)}&text=${encodeURIComponent(text)}`);
+    }
+
+    function generateQR() {
+      const link = document.getElementById('referralLink').value;
+      if (!link) return;
+
+      window.open(`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(link)}`);
+    }
+
+    // Load current price data
+    function loadPriceData() {
+      // In production, you might want to load real-time pricing
+      // For now, using static $0.001 price
+    }
+
+    // Toast notifications
+    function showToast(message, type = 'info') {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.className = `toast ${type}`;
+      toast.classList.add('show');
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 4000);
+    }
+
+    // Contact founder
+    document.getElementById('contactFounder').addEventListener('click', () => {
+      const message = 'Hi! I have a question about the $BOO Friends & Family launch.';
+      window.open(`https://t.me/yourhandle?text=${encodeURIComponent(message)}`);
+    });
+  </script>
+</body>
+</html>

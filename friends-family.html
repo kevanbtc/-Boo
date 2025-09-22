@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>$BOO Friends & Family - Exclusive Early Access</title>
+  <meta name="description" content="🎃 Exclusive $BOO token access for friends & family. $0.001 per BOO, direct from founder. Limited time only!" />
+  <meta property="og:title" content="$BOO Friends & Family - Get In Early!" />
+  <meta property="og:description" content="Exclusive early access to $BOO token at $0.001. Direct from founder, no DEX fees!" />
+  <meta property="og:image" content="https://i.imgur.com/halloween-boo-preview.png" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Creepster&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎃</text></svg>" />
+
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --bg-secondary: #111118;
+      --panel: #1a1a24;
+      --panel-hover: #222230;
+      --accent: #ff6a00;
+      --accent-light: #ff8533;
+      --accent-dark: #e55a00;
+      --success: #00ff88;
+      --warning: #ffaa00;
+      --error: #ff4444;
+      --text: #ffffff;
+      --text-secondary: #a0a0b0;
+      --text-muted: #707080;
+      --border: #333344;
+      --border-light: #444455;
+      --glow: 0 0 20px #ff6a0044;
+      --glow-strong: 0 0 30px #ff6a0088;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, var(--bg) 0%, var(--bg-secondary) 100%);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Background Animation */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 30%, #ff6a0015 0%, transparent 50%),
+                  radial-gradient(circle at 80% 70%, #ff6a0010 0%, transparent 50%);
+      animation: backgroundShift 10s ease-in-out infinite alternate;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    @keyframes backgroundShift {
+      0% { transform: translateX(-10px) translateY(-5px); }
+      100% { transform: translateX(10px) translateY(5px); }
+    }
+
+    /* Header */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(20px);
+      background: rgba(10, 10, 15, 0.9);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+    }
+
+    .nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Creepster', cursive;
+      font-size: 24px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      font-size: 32px;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .status-badge {
+      background: linear-gradient(135deg, var(--success), #00cc66);
+      color: #000;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 80px 24px 60px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-title {
+      font-family: 'Creepster', cursive;
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      background: linear-gradient(135deg, var(--accent), var(--accent-light), #ffaa44);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+      line-height: 1.1;
+      text-shadow: var(--glow);
+    }
+
+    .hero-subtitle {
+      font-size: 1.3rem;
+      color: var(--text-secondary);
+      margin-bottom: 12px;
+      font-weight: 300;
+    }
+
+    .hero-price {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--success);
+      margin: 24px 0;
+      text-shadow: var(--glow);
+    }
+
+    .hero-features {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin: 32px 0;
+      flex-wrap: wrap;
+    }
+
+    .hero-feature {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+
+    /* Purchase Section */
+    .purchase-section {
+      max-width: 600px;
+      margin: 0 auto 60px;
+      padding: 0 24px;
+    }
+
+    .purchase-card {
+      background: var(--panel);
+      border: 2px solid var(--accent);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: var(--glow-strong);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .purchase-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light), var(--accent));
+      animation: shimmer 2s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .purchase-title {
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 32px;
+    }
+
+    /* Form Elements */
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .form-input, .form-select {
+      width: 100%;
+      padding: 16px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg-secondary);
+      color: var(--text);
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .form-input:focus, .form-select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(255, 106, 0, 0.1);
+    }
+
+    /* Amount Buttons */
+    .amount-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 16px 0;
+    }
+
+    .amount-btn {
+      padding: 16px 8px;
+      border: 2px solid var(--border);
+      background: var(--bg-secondary);
+      color: var(--text);
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .amount-btn:hover {
+      border-color: var(--accent);
+      background: var(--panel);
+      transform: translateY(-2px);
+    }
+
+    .amount-btn.active {
+      background: var(--accent);
+      color: #000;
+      border-color: var(--accent);
+      box-shadow: var(--glow);
+    }
+
+    .amount-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .amount-btn:hover::before {
+      left: 100%;
+    }
+
+    /* Calculation Display */
+    .calc-display {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 24px 0;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .calc-row {
+      display: flex;
+      justify-content: space-between;
+      margin: 8px 0;
+      padding: 4px 0;
+    }
+
+    .calc-total {
+      border-top: 2px solid var(--border);
+      padding-top: 16px;
+      margin-top: 16px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--success);
+    }
+
+    /* Buttons */
+    .btn {
+      width: 100%;
+      padding: 18px 32px;
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      color: #000;
+      box-shadow: 0 4px 20px rgba(255, 106, 0, 0.3);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: linear-gradient(135deg, var(--accent-light), var(--accent));
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(255, 106, 0, 0.4);
+    }
+
+    .btn-primary:disabled {
+      background: #333;
+      color: #666;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .btn-secondary {
+      background: var(--bg-secondary);
+      color: var(--text);
+      border: 2px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      background: var(--panel);
+    }
+
+    /* Status Messages */
+    .status-message {
+      padding: 16px;
+      border-radius: 12px;
+      margin: 16px 0;
+      font-weight: 600;
+      text-align: center;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .status-success {
+      background: rgba(0, 255, 136, 0.1);
+      border: 2px solid var(--success);
+      color: var(--success);
+    }
+
+    .status-error {
+      background: rgba(255, 68, 68, 0.1);
+      border: 2px solid var(--error);
+      color: var(--error);
+    }
+
+    .status-info {
+      background: rgba(255, 170, 0, 0.1);
+      border: 2px solid var(--warning);
+      color: var(--warning);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* How It Works */
+    .how-it-works {
+      max-width: 1000px;
+      margin: 80px auto;
+      padding: 0 24px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--accent);
+      margin-bottom: 48px;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 32px;
+    }
+
+    .step-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .step-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--accent);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+
+    .step-number {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      color: #000;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1.5rem;
+      margin: 0 auto 20px;
+    }
+
+    .step-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+
+    .step-description {
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* Referral Section */
+    .referral-section {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      margin: 60px auto;
+      max-width: 800px;
+      text-align: center;
+    }
+
+    .referral-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .referral-subtitle {
+      color: var(--text-secondary);
+      margin-bottom: 32px;
+      font-size: 1.1rem;
+    }
+
+    .referral-input-group {
+      display: flex;
+      gap: 12px;
+      margin: 24px 0;
+    }
+
+    .referral-input {
+      flex: 1;
+      padding: 16px;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg-secondary);
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+    }
+
+    .share-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 60px 24px 40px;
+      border-top: 1px solid var(--border);
+      margin-top: 80px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.3s ease;
+    }
+
+    .footer-link:hover {
+      color: var(--accent);
+    }
+
+    .footer-text {
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    /* Toast Notifications */
+    .toast {
+      position: fixed;
+      top: 24px;
+      right: 24px;
+      background: var(--panel);
+      border: 2px solid var(--accent);
+      border-radius: 12px;
+      padding: 16px 20px;
+      font-weight: 600;
+      z-index: 1000;
+      transform: translateX(400px);
+      transition: transform 0.4s ease;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+
+    .toast.show {
+      transform: translateX(0);
+    }
+
+    .toast.success {
+      border-color: var(--success);
+      color: var(--success);
+    }
+
+    .toast.error {
+      border-color: var(--error);
+      color: var(--error);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+      }
+
+      .hero {
+        padding: 60px 16px 40px;
+      }
+
+      .purchase-card {
+        padding: 24px;
+      }
+
+      .amount-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .referral-input-group {
+        flex-direction: column;
+      }
+
+      .steps-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-links {
+        flex-direction: column;
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .amount-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Loading Animation */
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      border-top-color: var(--accent);
+      animation: spin 1s ease-in-out infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <nav class="nav">
+      <a href="#" class="logo">
+        <span class="logo-icon">🎃</span>
+        <span>$BOO</span>
+      </a>
+      <div class="status-badge">Friends & Family Live</div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1 class="hero-title">Friends & Family Access</h1>
+    <p class="hero-subtitle">🎃 Exclusive early access for inner circle only</p>
+    <div class="hero-price">$0.001 per BOO</div>
+
+    <div class="hero-features">
+      <div class="hero-feature">
+        <span>⚡</span>
+        <span>Instant Delivery</span>
+      </div>
+      <div class="hero-feature">
+        <span>🔒</span>
+        <span>No DEX Fees</span>
+      </div>
+      <div class="hero-feature">
+        <span>🎯</span>
+        <span>Direct from Founder</span>
+      </div>
+      <div class="hero-feature">
+        <span>🔗</span>
+        <span>Referral Bonuses</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Purchase Section -->
+  <section class="purchase-section">
+    <div class="purchase-card">
+      <h2 class="purchase-title">🔥 Buy $BOO Now</h2>
+
+      <!-- Payment Method -->
+      <div class="form-group">
+        <label class="form-label">Payment Method</label>
+        <select id="paymentMethod" class="form-select">
+          <option value="usdc">USDC (Polygon) - Recommended</option>
+          <option value="pol">POL (Polygon)</option>
+          <option value="eth">ETH (Polygon)</option>
+        </select>
+      </div>
+
+      <!-- Amount Selection -->
+      <div class="form-group">
+        <label class="form-label">Purchase Amount</label>
+        <div class="amount-grid">
+          <div class="amount-btn" data-usd="25">$25</div>
+          <div class="amount-btn" data-usd="50">$50</div>
+          <div class="amount-btn" data-usd="100">$100</div>
+          <div class="amount-btn" data-usd="250">$250</div>
+          <div class="amount-btn" data-usd="500">$500</div>
+          <div class="amount-btn" data-usd="1000">$1K</div>
+          <div class="amount-btn" data-usd="2500">$2.5K</div>
+          <div class="amount-btn" data-usd="5000">$5K</div>
+        </div>
+        <input type="number" id="customAmount" class="form-input" placeholder="Or enter custom amount in USD" min="25" step="1">
+      </div>
+
+      <!-- Calculation Display -->
+      <div class="calc-display">
+        <div class="calc-row">
+          <span>USD Amount:</span>
+          <span id="usdDisplay">$0</span>
+        </div>
+        <div class="calc-row">
+          <span>BOO Tokens:</span>
+          <span id="booDisplay">0 BOO</span>
+        </div>
+        <div class="calc-row">
+          <span>Payment Required:</span>
+          <span id="paymentDisplay">0 USDC</span>
+        </div>
+        <div class="calc-row calc-total">
+          <span>You Receive:</span>
+          <span id="totalDisplay">0 BOO</span>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <button id="connectBtn" class="btn btn-primary">Connect Wallet</button>
+      <button id="purchaseBtn" class="btn btn-primary" style="display:none" disabled>
+        Purchase BOO
+      </button>
+
+      <!-- Status Message -->
+      <div id="statusMsg" class="status-message" style="display:none"></div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-it-works">
+    <h2 class="section-title">How It Works</h2>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h3 class="step-title">Connect Wallet</h3>
+        <p class="step-description">Connect your Polygon wallet using MetaMask. We'll help you switch networks if needed.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h3 class="step-title">Choose Amount</h3>
+        <p class="step-description">Select your purchase amount ($25 minimum). See exactly how many BOO tokens you'll receive.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h3 class="step-title">Send Payment</h3>
+        <p class="step-description">Pay with USDC, POL, or ETH on Polygon. Your transaction is processed instantly.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">4</div>
+        <h3 class="step-title">Receive BOO</h3>
+        <p class="step-description">BOO tokens are sent directly to your wallet within minutes. Plus get your referral link!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Referral Section -->
+  <section class="referral-section">
+    <h2 class="referral-title">🔗 Your Referral Link</h2>
+    <p class="referral-subtitle">Share with friends and earn 1.5% commission on every purchase!</p>
+
+    <div class="referral-input-group">
+      <input type="text" id="referralLink" class="referral-input" placeholder="Connect wallet to generate your personal referral link..." readonly>
+      <button id="copyLinkBtn" class="btn btn-secondary">Copy</button>
+    </div>
+
+    <div class="share-grid">
+      <button id="twitterBtn" class="btn btn-secondary">Twitter</button>
+      <button id="telegramBtn" class="btn btn-secondary">Telegram</button>
+      <button id="qrBtn" class="btn btn-secondary">QR Code</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="https://polygonscan.com/address/0x550f4AF6E9466E4860c1E26509Df72EC30CF72AD" target="_blank" class="footer-link">Contract</a>
+      <a href="index.html" class="footer-link">Main Site</a>
+      <a href="mailto:kevanbtc@gmail.com" class="footer-link">Contact</a>
+    </div>
+    <p class="footer-text">© 2025 $BOO Token • Friends & Family Access • Built on Polygon</p>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+  <script>
+    // Configuration
+    const CONFIG = {
+      BOO_TOKEN: "0x550f4AF6E9466E4860c1E26509Df72EC30CF72AD",
+      USDC_TOKEN: "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359",
+      FOUNDER_WALLET: "0x9Dc918deBA2d3fc7128A59852b6699CCb2dC0EDB",
+      POLYGON_CHAIN_ID: "0x89",
+      BOO_PRICE: 0.001,
+      MIN_PURCHASE: 25,
+      POLYGON_RPC: "https://polygon-rpc.com"
+    };
+
+    // State
+    let userWallet = null;
+    let currentAmount = 0;
+    let provider = null;
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', function() {
+      setupEventListeners();
+      checkReferralParam();
+      updateCalculations();
+    });
+
+    // Event Listeners
+    function setupEventListeners() {
+      // Amount buttons
+      document.querySelectorAll('.amount-btn').forEach(btn => {
+        btn.addEventListener('click', () => selectAmount(parseInt(btn.dataset.usd), btn));
+      });
+
+      // Custom amount
+      document.getElementById('customAmount').addEventListener('input', (e) => {
+        selectAmount(parseFloat(e.target.value) || 0, null);
+      });
+
+      // Payment method
+      document.getElementById('paymentMethod').addEventListener('change', updateCalculations);
+
+      // Wallet actions
+      document.getElementById('connectBtn').addEventListener('click', connectWallet);
+      document.getElementById('purchaseBtn').addEventListener('click', handlePurchase);
+
+      // Referral actions
+      document.getElementById('copyLinkBtn').addEventListener('click', copyReferralLink);
+      document.getElementById('twitterBtn').addEventListener('click', shareOnTwitter);
+      document.getElementById('telegramBtn').addEventListener('click', shareOnTelegram);
+      document.getElementById('qrBtn').addEventListener('click', generateQRCode);
+    }
+
+    // Check for referral parameter
+    function checkReferralParam() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const ref = urlParams.get('ref');
+      if (ref && ethers.utils.isAddress(ref)) {
+        localStorage.setItem('referrer', ref);
+        showToast(`🎉 Referred by ${ref.slice(0,6)}...${ref.slice(-4)}! You'll both earn rewards.`, 'success');
+      }
+    }
+
+    // Select amount
+    function selectAmount(amount, btn) {
+      currentAmount = amount;
+
+      // Update UI
+      document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+
+      document.getElementById('customAmount').value = amount > 0 ? amount : '';
+      updateCalculations();
+    }
+
+    // Update calculations
+    function updateCalculations() {
+      const paymentMethod = document.getElementById('paymentMethod').value;
+      const booAmount = currentAmount / CONFIG.BOO_PRICE;
+
+      // Update displays
+      document.getElementById('usdDisplay').textContent = `$${currentAmount.toLocaleString()}`;
+      document.getElementById('booDisplay').textContent = `${booAmount.toLocaleString()} BOO`;
+      document.getElementById('totalDisplay').textContent = `${booAmount.toLocaleString()} BOO`;
+
+      // Calculate payment amount (simplified pricing)
+      let paymentAmount, paymentSymbol;
+      switch(paymentMethod) {
+        case 'usdc':
+          paymentAmount = currentAmount.toFixed(2);
+          paymentSymbol = 'USDC';
+          break;
+        case 'pol':
+          paymentAmount = (currentAmount / 0.5).toFixed(2); // Rough POL price
+          paymentSymbol = 'POL';
+          break;
+        case 'eth':
+          paymentAmount = (currentAmount / 2500).toFixed(4); // Rough ETH price
+          paymentSymbol = 'ETH';
+          break;
+      }
+
+      document.getElementById('paymentDisplay').textContent = `${paymentAmount} ${paymentSymbol}`;
+
+      // Update purchase button
+      updatePurchaseButton();
+    }
+
+    // Update purchase button state
+    function updatePurchaseButton() {
+      const purchaseBtn = document.getElementById('purchaseBtn');
+
+      if (!userWallet) {
+        purchaseBtn.style.display = 'none';
+        return;
+      }
+
+      purchaseBtn.style.display = 'block';
+
+      if (currentAmount >= CONFIG.MIN_PURCHASE) {
+        purchaseBtn.disabled = false;
+        purchaseBtn.innerHTML = `Purchase ${(currentAmount / CONFIG.BOO_PRICE).toLocaleString()} BOO`;
+      } else {
+        purchaseBtn.disabled = true;
+        purchaseBtn.innerHTML = `Minimum $${CONFIG.MIN_PURCHASE} Required`;
+      }
+    }
+
+    // Connect wallet
+    async function connectWallet() {
+      const connectBtn = document.getElementById('connectBtn');
+
+      try {
+        if (!window.ethereum) {
+          throw new Error('Please install MetaMask to continue');
+        }
+
+        connectBtn.innerHTML = '<span class="loading"></span> Connecting...';
+        connectBtn.disabled = true;
+
+        // Request accounts
+        const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+
+        // Check/switch to Polygon
+        const chainId = await ethereum.request({ method: 'eth_chainId' });
+        if (chainId !== CONFIG.POLYGON_CHAIN_ID) {
+          try {
+            await ethereum.request({
+              method: 'wallet_switchEthereumChain',
+              params: [{ chainId: CONFIG.POLYGON_CHAIN_ID }],
+            });
+          } catch (switchError) {
+            if (switchError.code === 4902) {
+              // Add Polygon network
+              await ethereum.request({
+                method: 'wallet_addEthereumChain',
+                params: [{
+                  chainId: CONFIG.POLYGON_CHAIN_ID,
+                  chainName: 'Polygon Mainnet',
+                  rpcUrls: ['https://polygon-rpc.com'],
+                  nativeCurrency: { name: 'POL', symbol: 'POL', decimals: 18 },
+                  blockExplorerUrls: ['https://polygonscan.com']
+                }]
+              });
+            }
+          }
+        }
+
+        userWallet = accounts[0];
+        provider = new ethers.providers.Web3Provider(window.ethereum);
+
+        // Update UI
+        connectBtn.style.display = 'none';
+        generateReferralLink();
+        updatePurchaseButton();
+
+        showToast(`✅ Connected: ${userWallet.slice(0,6)}...${userWallet.slice(-4)}`, 'success');
+
+      } catch (error) {
+        console.error('Connection failed:', error);
+        showToast(error.message || 'Failed to connect wallet', 'error');
+
+        connectBtn.innerHTML = 'Connect Wallet';
+        connectBtn.disabled = false;
+      }
+    }
+
+    // Handle purchase
+    async function handlePurchase() {
+      if (!userWallet || currentAmount < CONFIG.MIN_PURCHASE) return;
+
+      const purchaseBtn = document.getElementById('purchaseBtn');
+      const statusMsg = document.getElementById('statusMsg');
+      const originalBtnText = purchaseBtn.innerHTML;
+
+      try {
+        purchaseBtn.innerHTML = '<span class="loading"></span> Processing...';
+        purchaseBtn.disabled = true;
+
+        showStatus('⏳ Processing your purchase...', 'info');
+
+        const paymentMethod = document.getElementById('paymentMethod').value;
+        const booAmount = currentAmount / CONFIG.BOO_PRICE;
+
+        if (paymentMethod === 'usdc') {
+          await processUSDCPayment();
+        } else {
+          // For POL/ETH, show contact info
+          showStatus(`💬 For ${paymentMethod.toUpperCase()} payments, please contact the founder directly with your wallet address.`, 'info');
+
+          const contactMsg = `Hi! I want to buy ${booAmount.toLocaleString()} BOO tokens for $${currentAmount} using ${paymentMethod.toUpperCase()}. My wallet: ${userWallet}`;
+
+          // You can replace this with your actual contact method
+          window.open(`mailto:kevanbtc@gmail.com?subject=BOO F&F Purchase&body=${encodeURIComponent(contactMsg)}`);
+        }
+
+      } catch (error) {
+        console.error('Purchase failed:', error);
+        showStatus('❌ Purchase failed. Please try again or contact support.', 'error');
+      } finally {
+        purchaseBtn.innerHTML = originalBtnText;
+        purchaseBtn.disabled = false;
+      }
+    }
+
+    // Process USDC payment
+    async function processUSDCPayment() {
+      try {
+        const usdcAmount = ethers.utils.parseUnits(currentAmount.toString(), 6);
+        const signer = provider.getSigner();
+
+        // Create USDC contract instance
+        const usdcContract = new ethers.Contract(
+          CONFIG.USDC_TOKEN,
+          ['function transfer(address to, uint256 amount) external returns (bool)', 'function balanceOf(address account) external view returns (uint256)'],
+          signer
+        );
+
+        // Check balance
+        const balance = await usdcContract.balanceOf(userWallet);
+        if (balance.lt(usdcAmount)) {
+          throw new Error(`Insufficient USDC balance. Need ${currentAmount} USDC.`);
+        }
+
+        showStatus('💰 Sending USDC payment...', 'info');
+
+        // Send USDC to founder
+        const tx = await usdcContract.transfer(CONFIG.FOUNDER_WALLET, usdcAmount);
+
+        showStatus('⏳ Transaction sent! Waiting for confirmation...', 'info');
+
+        await tx.wait();
+
+        // Success
+        showStatus(`✅ Payment successful! ${(currentAmount / CONFIG.BOO_PRICE).toLocaleString()} BOO tokens will be sent to your wallet within 24 hours.`, 'success');
+
+        // Record purchase
+        recordPurchase(tx.hash);
+
+        showToast('🎉 Purchase complete! BOO tokens incoming!', 'success');
+
+      } catch (error) {
+        throw new Error(error.message || 'USDC payment failed');
+      }
+    }
+
+    // Record purchase
+    function recordPurchase(txHash) {
+      const purchase = {
+        wallet: userWallet,
+        amount: currentAmount,
+        booAmount: currentAmount / CONFIG.BOO_PRICE,
+        txHash,
+        timestamp: Date.now(),
+        referrer: localStorage.getItem('referrer')
+      };
+
+      // Store locally (replace with backend call in production)
+      const purchases = JSON.parse(localStorage.getItem('ff_purchases') || '[]');
+      purchases.push(purchase);
+      localStorage.setItem('ff_purchases', JSON.stringify(purchases));
+    }
+
+    // Show status message
+    function showStatus(message, type) {
+      const statusMsg = document.getElementById('statusMsg');
+      statusMsg.textContent = message;
+      statusMsg.className = `status-message status-${type}`;
+      statusMsg.style.display = 'block';
+    }
+
+    // Generate referral link
+    function generateReferralLink() {
+      if (!userWallet) return;
+
+      const baseUrl = window.location.origin + window.location.pathname;
+      const referralUrl = `${baseUrl}?ref=${userWallet}`;
+
+      document.getElementById('referralLink').value = referralUrl;
+    }
+
+    // Referral actions
+    function copyReferralLink() {
+      const link = document.getElementById('referralLink').value;
+      if (!link) return;
+
+      navigator.clipboard.writeText(link);
+      showToast('📋 Referral link copied!', 'success');
+    }
+
+    function shareOnTwitter() {
+      const link = document.getElementById('referralLink').value;
+      if (!link) return;
+
+      const text = `🎃 Just got early access to $BOO token!\n\nFriends & Family exclusive at $0.001 per BOO\n✨ Direct from founder\n✨ No DEX fees\n✨ Instant delivery\n\nGet yours before public launch:`;
+
+      window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(link)}`);
+    }
+
+    function shareOnTelegram() {
+      const link = document.getElementById('referralLink').value;
+      if (!link) return;
+
+      const text = `🎃 $BOO Token Friends & Family Access!\n\nExclusive early access at $0.001 per BOO. Get in before the public launch!\n\n${link}`;
+
+      window.open(`https://t.me/share/url?url=${encodeURIComponent(link)}&text=${encodeURIComponent(text)}`);
+    }
+
+    function generateQRCode() {
+      const link = document.getElementById('referralLink').value;
+      if (!link) return;
+
+      window.open(`https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(link)}`);
+    }
+
+    // Toast notification
+    function showToast(message, type = 'info') {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.className = `toast ${type}`;
+      toast.classList.add('show');
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 5000);
+    }
+
+    // Add some Halloween flair
+    function addHalloweenEffect() {
+      // Add floating pumpkins or bats occasionally
+      if (Math.random() < 0.1) {
+        const emoji = Math.random() < 0.5 ? '🎃' : '🦇';
+        const element = document.createElement('div');
+        element.textContent = emoji;
+        element.style.cssText = `
+          position: fixed;
+          top: 100vh;
+          left: ${Math.random() * 100}vw;
+          font-size: 2rem;
+          pointer-events: none;
+          z-index: 1000;
+          animation: float-up 8s linear forwards;
+        `;
+
+        document.body.appendChild(element);
+
+        setTimeout(() => element.remove(), 8000);
+      }
+    }
+
+    // Add CSS for floating animation
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes float-up {
+        to {
+          transform: translateY(-120vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Trigger Halloween effects occasionally
+    setInterval(addHalloweenEffect, 10000);
+  </script>
+</body>
+</html>
