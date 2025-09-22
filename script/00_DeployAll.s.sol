@@ -25,7 +25,7 @@ contract DeployAll is Script {
         BooPoints points = new BooPoints(address(nft));
         BooToken token = new BooToken(maxSupply);
         LaunchGuard guard = new LaunchGuard(address(this), 5, 1000 * 1e18, 10000 * 1e18, block.timestamp + 10 minutes);
-        LPVault lpVault = new LPVault(address(0)); // placeholder
+        LPVault lpVault = new LPVault(address(nft)); // Use BooCostumeNFT as placeholder ERC721
         FeeRouter feeRouter = new FeeRouter(address(token), address(lpVault), address(points), address(referrals)); // prize to points, affiliate to referrals
         StakingManager staking = new StakingManager(address(token));
         AirdropMerkle airdrop = new AirdropMerkle(address(token), bytes32(0)); // placeholder root
