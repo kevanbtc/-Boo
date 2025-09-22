@@ -1,13 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useAccount, useWriteContract, useReadContract } from 'wagmi';
+import { useState, useEffect, Suspense } from 'react';
+import { useAccount, useWriteContract } from 'wagmi';
 import { keccak256, encodeAbiParameters } from 'viem';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useSearchParams } from 'next/navigation';
 import { REFERRAL_REGISTRY_ABI, REFERRAL_REGISTRY_ADDRESS } from '../../lib/contracts';
 
-export default function EarlyPage() {
+function EarlyPageContent() {
   const { address, isConnected } = useAccount();
   const searchParams = useSearchParams();
   const ref = searchParams.get('ref');
@@ -121,5 +121,13 @@ export default function EarlyPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function EarlyPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-black text-white p-8 flex items-center justify-center">Loading...</div>}>
+      <EarlyPageContent />
+    </Suspense>
   );
 }
