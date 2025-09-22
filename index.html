@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>$BOO — The Spookiest Meme Token on Polygon</title>
+  <meta name="description" content="0.5% fees, 20% burned, tiered affiliates up to 3%, staking rewards, and NFT utilities. Join the Halloween revolution on Polygon." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b0b0f;
+      --panel:#12121a;
+      --accent:#ff6a00;
+      --accent-2:#ffa94d;
+      --ink:#e8e8ec;
+      --muted:#9aa0aa;
+      --green:#22d3ee;
+      --violet:#8b5cf6;
+      --red:#ef4444;
+      --glow: 0 0 24px #ff6a00aa, 0 0 48px #ff6a0055;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background: radial-gradient(1200px 500px at 50% -10%, #1a1320 0%, transparent 60%) , var(--bg);
+      color:var(--ink); font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      overflow-x:hidden;
+    }
+    /* Parallax fog layers */
+    .fog, .fog::before, .fog::after{
+      position:fixed; inset:-10% -10% auto -10%; height:60vh; pointer-events:none; z-index:0;
+      background: radial-gradient(800px 200px at 20% 0%, #ffffff0a, transparent 60%),
+                  radial-gradient(600px 160px at 80% 10%, #ffffff08, transparent 60%);
+      filter: blur(24px); mix-blend-mode: screen; animation: fogMove 40s linear infinite;
+    }
+    .fog::before{content:""; animation-duration: 60s; opacity:.7}
+    .fog::after{content:""; animation-duration: 90s; opacity:.5}
+    @keyframes fogMove{0%{transform:translateX(-5%)}50%{transform:translateX(5%)}100%{transform:translateX(-5%)}}
+
+    /* Canvas bats */
+    #bats{position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.7}
+
+    /* Nav */
+    .nav{
+      position:sticky; top:0; z-index:5; backdrop-filter: blur(8px);
+      background: linear-gradient(180deg, #0b0b0fcc 20%, #0b0b0f00 100%);
+      border-bottom:1px solid #ffffff12;
+    }
+    .wrap{max-width:1200px; margin:0 auto; padding:0 16px}
+    .row{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:16px 0}
+    .brand{display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--ink)}
+    .badge{font-size:12px; padding:4px 8px; border:1px solid #ffffff22; border-radius:999px; color:#c6c6d4}
+    .menu{display:flex; gap:16px; flex-wrap:wrap}
+    .menu a{color:#c6c6d4; text-decoration:none; font-size:14px; padding:8px 10px; border-radius:10px}
+    .menu a:hover{background:#ffffff10; color:var(--ink)}
+    .btn{background:var(--accent); color:#0b0b0f; border:none; border-radius:12px; padding:10px 14px; font-weight:700; cursor:pointer}
+    .btn.secondary{background:#ffffff10; color:var(--ink); border:1px solid #ffffff14}
+    .btn:active{transform:translateY(1px)}
+
+    /* Hero */
+    .hero{position:relative; z-index:2; padding:72px 0 40px}
+    h1{
+      font-size: clamp(36px, 6vw, 64px);
+      line-height:1.02; margin:0 0 12px;
+      font-weight:900; letter-spacing:-0.02em;
+      text-shadow: 0 0 20px #ff6a0011;
+    }
+    .neon{color:var(--accent); text-shadow: var(--glow);}
+    .sub{color:#cfcfe8; max-width:800px}
+    .stats{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin-top:28px}
+    .card{
+      background: linear-gradient(180deg, #171722, #0f0f15);
+      border:1px solid #ffffff12; border-radius:16px; padding:16px;
+    }
+    .metric{font-size:28px; font-weight:900}
+    .label{font-size:12px; color:var(--muted)}
+    .cta{display:flex; gap:12px; margin-top:24px; flex-wrap:wrap}
+    .cta a, .cta button {text-decoration:none}
+
+    /* Sections */
+    section{position:relative; z-index:2; padding:48px 0}
+    h2{font-size: clamp(24px, 4vw, 36px); margin:0 0 10px}
+    p{color:#cfd2da}
+
+    .grid-feat{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px}
+    .panel{background:linear-gradient(180deg,#151521,#0f0f15); border:1px solid #ffffff12; border-radius:16px; padding:18px}
+    .panel h3{margin:0 0 6px}
+    .muted{color:var(--muted)}
+
+    .grid-sections{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px}
+    .tile{display:block; text-decoration:none; color:inherit}
+    .tile .panel{transition:transform .12s ease, background .2s ease}
+    .tile:hover .panel{transform: translateY(-2px); background:linear-gradient(180deg,#1a1830,#101018)}
+
+    /* Transparency */
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; font-size:12px; word-break:break-all}
+
+    /* Footer */
+    footer{border-top:1px solid #ffffff12; padding:32px 0 60px; color:#9aa0aa}
+
+    /* Countdown */
+    .countdown{display:flex; gap:12px; margin-top:16px}
+    .tick{background:#ffffff08; border:1px solid #ffffff12; border-radius:12px; padding:10px 12px; text-align:center; min-width:70px}
+    .tick b{display:block; font-size:20px}
+    .tick span{font-size:11px; color:#9aa0aa}
+
+    /* Scroll reveal */
+    .reveal{opacity:0; transform: translateY(12px); transition: opacity .5s ease, transform .5s ease}
+    .reveal.show{opacity:1; transform:none}
+
+    /* Mobile */
+    @media (max-width: 960px){
+      .menu{display:none}
+      .stats{grid-template-columns:repeat(2,1fr)}
+      .grid-feat{grid-template-columns:1fr}
+      .grid-sections{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 640px){
+      .grid-sections{grid-template-columns:1fr}
+    }
+
+    /* Logo wordmark */
+    .word{
+      font-family: "UnifrakturMaguntia", serif;
+      letter-spacing: .5px;
+    }
+    .polytag{
+      font-size:12px; padding:4px 8px; border:1px solid #9b59b680; color:#d6b3ff;
+      border-radius:999px; background:#8b5cf61220;
+    }
+
+    /* Toast */
+    .toast{position:fixed; right:18px; bottom:18px; background:#111827; color:#e5e7eb; border:1px solid #ffffff1a; border-radius:12px; padding:10px 14px; z-index:999; display:none}
+    .toast.show{display:block; animation: fadeToast 2.2s ease forwards}
+    @keyframes fadeToast{0%{opacity:0; transform: translateY(6px)}10%{opacity:1; transform:none}85%{opacity:1}100%{opacity:0}}
+  </style>
+</head>
+<body>
+  <!-- fog + bats -->
+  <div class="fog"></div>
+  <canvas id="bats" width="1920" height="1080" aria-hidden="true"></canvas>
+
+  <!-- NAV -->
+  <div class="nav">
+    <div class="wrap">
+      <div class="row">
+        <a class="brand" href="#">
+          <span style="font-size:20px">🦇</span>
+          <strong class="word" style="font-size:22px">$BOO</strong>
+          <span class="polytag">Polygon</span>
+        </a>
+        <nav class="menu">
+          <a href="#early">Early Access</a>
+          <a href="#refer">Refer & Earn</a>
+          <a href="#quests">Quests</a>
+          <a href="#stake">Stake</a>
+          <a href="#airdrop">Airdrop</a>
+          <a href="#leaderboard">Leaderboard</a>
+          <a href="#transparency">Transparency</a>
+        </nav>
+        <div style="display:flex; gap:8px">
+          <button class="btn secondary" id="docsBtn">Docs</button>
+          <button class="btn" id="connectBtn">Connect Wallet</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="wrap hero">
+    <h1 class="reveal">The <span class="neon">spookiest</span> meme token on Polygon</h1>
+    <p class="sub reveal">0.5% fees, <b>20% burned</b>, tiered affiliates up to <b>3%</b>, staking rewards, and NFT utilities. Join the Halloween revolution! 🎃</p>
+
+    <!-- Countdown to Halloween 2025 -->
+    <div class="countdown reveal" id="countdown">
+      <div class="tick"><b id="d">—</b><span>Days</span></div>
+      <div class="tick"><b id="h">—</b><span>Hours</span></div>
+      <div class="tick"><b id="m">—</b><span>Minutes</span></div>
+      <div class="tick"><b id="s">—</b><span>Seconds</span></div>
+    </div>
+
+    <div class="cta reveal">
+      <a class="btn" href="#early">Early Access</a>
+      <a class="btn secondary" href="#refer">Refer & Earn</a>
+      <a class="btn secondary" href="#stake">Stake</a>
+    </div>
+
+    <div class="stats reveal">
+      <div class="card">
+        <div class="metric">1B</div>
+        <div class="label">Total Supply</div>
+      </div>
+      <div class="card">
+        <div class="metric">20%</div>
+        <div class="label">Burn Rate</div>
+      </div>
+      <div class="card">
+        <div class="metric">0.5%</div>
+        <div class="label">Trading Fee</div>
+      </div>
+      <div class="card">
+        <div class="metric">3%</div>
+        <div class="label">Max Affiliate</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- WHY -->
+  <section class="wrap">
+    <h2 class="reveal">Why $BOO?</h2>
+    <div class="grid-feat">
+      <div class="panel reveal">
+        <h3>🔥 Deflationary Burns</h3>
+        <p>20% of every trade is burned forever, increasing scarcity and value.</p>
+      </div>
+      <div class="panel reveal">
+        <h3>👻 Affiliate Program</h3>
+        <p>Earn 1.5–3% commissions based on your referral volume. Higher tiers for bigger contributors.</p>
+      </div>
+      <div class="panel reveal">
+        <h3>🎁 Staking Rewards</h3>
+        <p>Lock $BOO for 7–31 days to earn APR up to 25%, with Halloween NFT boosts.</p>
+      </div>
+    </div>
+    <p style="margin-top:18px; text-align:center; color:#cfd2da">🎃 Beware the BOO! The Halloween spirit lives on Polygon. 🎃</p>
+  </section>
+
+  <!-- ACTION GRID -->
+  <section class="wrap">
+    <div class="grid-sections">
+      <a class="tile" id="early" href="/early">
+        <div class="panel reveal">
+          <h3>Early Access</h3>
+          <p class="muted">Onramp via card or crypto and claim your personal link.</p>
+          <div style="margin-top:10px"><span class="btn" style="padding:8px 12px">Start</span></div>
+        </div>
+      </a>
+      <a class="tile" id="refer" href="/refer">
+        <div class="panel reveal">
+          <h3>Refer & Earn</h3>
+          <p class="muted">Tiered affiliates up to 3% with rolling 30-day volume tiers.</p>
+          <div style="margin-top:10px"><span class="btn" style="padding:8px 12px">Get Link</span></div>
+        </div>
+      </a>
+      <a class="tile" id="quests" href="/quests">
+        <div class="panel reveal">
+          <h3>Quests</h3>
+          <p class="muted">Complete seasonal quests to earn points and redeem Halloween NFTs.</p>
+          <div style="margin-top:10px"><span class="btn" style="padding:8px 12px">Play</span></div>
+        </div>
+      </a>
+      <a class="tile" id="stake" href="/stake">
+        <div class="panel reveal">
+          <h3>Stake</h3>
+          <p class="muted">Lock BOO for 7/14/31 days and boost with Costume NFTs.</p>
+          <div style="margin-top:10px"><span class="btn" style="padding:8px 12px">Stake Now</span></div>
+        </div>
+      </a>
+      <a class="tile" id="airdrop" href="/airdrop">
+        <div class="panel reveal">
+          <h3>Airdrop</h3>
+          <p class="muted">Merkle claims for early community and affiliates.</p>
+          <div style="margin-top:10px"><span class="btn" style="padding:8px 12px">Claim</span></div>
+        </div>
+      </a>
+      <a class="tile" id="leaderboard" href="/leaderboard">
+        <div class="panel reveal">
+          <h3>Leaderboard</h3>
+          <p class="muted">Top referrers and stakers win weekly prize drops.</p>
+          <div style="margin-top:10px"><span class="btn" style="padding:8px 12px">View</span></div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- REF LINK UTILITY -->
+  <section class="wrap">
+    <h2 class="reveal">Your Early-Access Link</h2>
+    <div class="panel reveal">
+      <p class="muted">Paste your wallet address to generate a shareable link. If you have a seed invite, use <b>?ref=SEED</b>.</p>
+      <div style="display:flex; gap:8px; margin-top:10px; flex-wrap:wrap">
+        <input id="addr" placeholder="0xYourAddress..." spellcheck="false"
+               style="flex:1; min-width:260px; padding:12px; border-radius:10px; border:1px solid #ffffff22; background:#0f1220; color:var(--ink)">
+        <button class="btn" id="makeLink">Generate</button>
+        <button class="btn secondary" id="copyLink">Copy</button>
+      </div>
+      <div style="margin-top:10px" class="mono" id="linkOut">Link will appear here…</div>
+    </div>
+  </section>
+
+  <!-- TRANSPARENCY -->
+  <section class="wrap" id="transparency">
+    <h2 class="reveal">Transparency</h2>
+    <div class="grid-feat">
+      <div class="panel reveal">
+        <h3>Token</h3>
+        <div class="mono" id="tokenAddr">0x0000000000000000000000000000000000000000</div>
+      </div>
+      <div class="panel reveal">
+        <h3>Referral Registry</h3>
+        <div class="mono" id="refAddr">0x0000000000000000000000000000000000000000</div>
+      </div>
+      <div class="panel reveal">
+        <h3>Fee Split</h3>
+        <p class="muted">0.5% total: <b>40%</b> LP / <b>20%</b> Prize / <b>20%</b> Affiliate / <b>20%</b> Burn. Early-unstake penalty burn: <b>5%</b>.</p>
+        <p class="muted">Code: <a href="https://github.com/kevanbtc/-Boo" target="_blank" rel="noopener noreferrer">github.com/kevanbtc/-Boo</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap row" style="padding-top:0">
+      <div>© <span id="yr"></span> $BOO • Built on Polygon</div>
+      <div style="display:flex; gap:12px; flex-wrap:wrap">
+        <a class="muted" href="#early">Early Access</a>
+        <a class="muted" href="#refer">Refer</a>
+        <a class="muted" href="#stake">Stake</a>
+        <a class="muted" href="#airdrop">Airdrop</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div class="toast" id="toast">Copied to clipboard</div>
+
+  <script>
+    // ===== Halloween Countdown (to Oct 31, 2025 23:59:59 UTC) =====
+    const target = new Date('2025-11-01T00:00:00Z').getTime();
+    const dEl = document.getElementById('d'), hEl = document.getElementById('h'),
+          mEl = document.getElementById('m'), sEl = document.getElementById('s');
+    setInterval(()=>{
+      const now = Date.now(), diff = Math.max(0, target - now);
+      const d = Math.floor(diff/86400000);
+      const h = Math.floor((diff%86400000)/3600000);
+      const m = Math.floor((diff%3600000)/60000);
+      const s = Math.floor((diff%60000)/1000);
+      dEl.textContent = String(d); hEl.textContent = String(h);
+      mEl.textContent = String(m); sEl.textContent = String(s);
+    }, 1000);
+
+    // ===== Scroll reveal =====
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('show'); });
+    }, {threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // ===== Copy link generator =====
+    const makeBtn = document.getElementById('makeLink');
+    const copyBtn = document.getElementById('copyLink');
+    const addrIn  = document.getElementById('addr');
+    const out     = document.getElementById('linkOut');
+    const toast   = document.getElementById('toast');
+    function isAddr(x){ return /^0x[a-fA-F0-9]{40}$/.test(x); }
+    function showToast(msg){
+      toast.textContent = msg; toast.classList.remove('show');
+      void toast.offsetWidth; toast.classList.add('show');
+      setTimeout(()=>toast.classList.remove('show'), 2200);
+    }
+    makeBtn.addEventListener('click', ()=>{
+      const base = location.origin;
+      const v = addrIn.value.trim();
+      if(!isAddr(v)) { showToast('Invalid address'); return; }
+      const link = `${base}/early?ref=${v}`;
+      out.textContent = link;
+    });
+    copyBtn.addEventListener('click', ()=>{
+      const txt = out.textContent.trim();
+      if(!txt) return showToast('Nothing to copy');
+      navigator.clipboard.writeText(txt).then(()=>showToast('Copied to clipboard'));
+    });
+
+    // ===== Simple fake wallet modal (placeholder) =====
+    document.getElementById('connectBtn').addEventListener('click', ()=>{
+      showToast('Open wallet modal (wire RainbowKit in app version)');
+    });
+    document.getElementById('docsBtn').addEventListener('click', ()=>{
+      window.open('https://github.com/kevanbtc/-Boo', '_blank','noopener');
+    });
+
+    // ===== Animated bats (canvas) =====
+    const canvas = document.getElementById('bats'); const ctx = canvas.getContext('2d');
+    function resize(){ canvas.width = innerWidth; canvas.height = innerHeight; } resize(); addEventListener('resize', resize);
+    const bats = Array.from({length: 18}).map(()=>({
+      x: Math.random()*canvas.width, y: Math.random()*canvas.height*.6 + 20,
+      s: Math.random()*0.6 + 0.4, vx: (Math.random()*0.6+0.4)*(Math.random()<.5?-1:1), t: Math.random()*Math.PI*2
+    }));
+    function drawBat(x,y,scale,flap){
+      ctx.save(); ctx.translate(x,y); ctx.scale(scale,scale);
+      ctx.rotate(Math.sin(flap)*0.15);
+      // body
+      ctx.fillStyle = '#d1d5db';
+      ctx.beginPath(); ctx.ellipse(0,0,6,4,0,0,Math.PI*2); ctx.fill();
+      // wings
+      ctx.fillStyle = '#f97316';
+      ctx.globalAlpha = 0.9;
+      ctx.beginPath(); ctx.moveTo(0,0);
+      ctx.quadraticCurveTo(-18, -6*Math.sin(flap), -32, 0);
+      ctx.quadraticCurveTo(-18, 6*Math.sin(flap), 0,0); ctx.fill();
+      ctx.beginPath(); ctx.moveTo(0,0);
+      ctx.quadraticCurveTo(18, -6*Math.sin(flap), 32, 0);
+      ctx.quadraticCurveTo(18, 6*Math.sin(flap), 0,0); ctx.fill();
+      ctx.restore();
+    }
+    function tick(){
+      ctx.clearRect(0,0,canvas.width, canvas.height);
+      bats.forEach(b=>{
+        b.t += 0.1; b.x += b.vx; b.y += Math.sin(b.t)*0.4;
+        if(b.x < -40) b.x = canvas.width+40;
+        if(b.x > canvas.width+40) b.x = -40;
+        drawBat(b.x, b.y, b.s*1.2, b.t);
+      });
+      requestAnimationFrame(tick);
+    }
+    tick();
+
+    // ===== Prefill address to link if ?ref given =====
+    const qp = new URLSearchParams(location.search);
+    const ref = qp.get('ref');
+    if(ref && /^0x[a-fA-F0-9]{40}$/.test(ref)){
+      addrIn.value = ref;
+      document.getElementById('makeLink').click();
+    }
+    // Year
+    document.getElementById('yr').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
