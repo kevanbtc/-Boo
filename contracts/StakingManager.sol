@@ -37,10 +37,13 @@ contract StakingManager is Ownable {
         require(block.timestamp >= s.startTime + s.lockDays * 1 days, "Still locked");
         uint256 penalty = 0;
         if (block.timestamp < s.startTime + s.lockDays * 1 days) {
-            penalty = s.amount / 20; // 5% penalty
+            penalty = s.amount / 20; // 5% penalty, burned
         }
         uint256 returnAmount = s.amount - penalty;
         booToken.transfer(msg.sender, returnAmount);
+        if (penalty > 0) {
+            booToken.transfer(address(0xdead), penalty); // Burn penalty
+        }
         emit Unstaked(msg.sender, index, returnAmount, penalty);
         // Remove stake
         stakes[msg.sender][index] = stakes[msg.sender][stakes[msg.sender].length - 1];

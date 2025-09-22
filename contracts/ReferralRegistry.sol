@@ -21,10 +21,18 @@ contract ReferralRegistry is Ownable(msg.sender) {
         address ref = codeOwner[code];
         if (ref != address(0) && amount > 0) {
             stats[ref].volume += amount;
-            uint256 comm = (amount * commissionBps) / 10_000;
+            uint256 dynamicCommissionBps = getCommissionBps(stats[ref].volume);
+            uint256 comm = (amount * dynamicCommissionBps) / 10_000;
             stats[ref].commissionAccrued += comm;
             emit ReferralRecorded(buyer, code, amount);
         }
+    }
+
+    function getCommissionBps(uint256 volume) public pure returns (uint256) {
+        if (volume >= 100000 * 1e18) return 300; // 3% for 100k+ volume
+        if (volume >= 50000 * 1e18) return 250; // 2.5%
+        if (volume >= 10000 * 1e18) return 200; // 2%
+        return 150; // 1.5% base
     }
 
     // Admin can settle from rewards pool off‑chain or via a pull‑payment adaptor.
