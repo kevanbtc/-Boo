@@ -60,6 +60,8 @@ export const REFERRAL_REGISTRY_ABI = [
   },
 ] as const;
 
+export const REFERRAL_REGISTRY_ADDRESS = CONTRACT_ADDRESSES.ReferralRegistry;
+
 export const AIRDROP_MERKLE_ABI = [
   {
     inputs: [

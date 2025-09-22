@@ -38,10 +38,9 @@ contract DeployAll is Script {
         // Allocate tokens
         uint256 airdropAlloc = maxSupply * 10 / 100; // 10%
         uint256 lpAlloc = maxSupply * 10 / 100; // 10%
-        uint256 opsAlloc = maxSupply * 5 / 100; // 5%
         // Transfer to multisigs (placeholders)
-        token.transfer(address(airdrop), airdropAlloc);
-        token.transfer(address(lpVault), lpAlloc);
+        require(token.transfer(address(airdrop), airdropAlloc));
+        require(token.transfer(address(lpVault), lpAlloc));
         // Keep rest in deployer
 
         vm.stopBroadcast();

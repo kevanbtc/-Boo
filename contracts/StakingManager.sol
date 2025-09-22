@@ -20,6 +20,7 @@ contract StakingManager is Ownable {
 
     event Staked(address indexed user, uint256 amount, uint256 lockDays);
     event Unstaked(address indexed user, uint256 index, uint256 amount, uint256 penalty);
+    event PenaltyBurn(address indexed holder, uint256 principal, uint256 burned);
 
     constructor(address _booToken) Ownable(msg.sender) {
         booToken = IERC20(_booToken);
@@ -45,6 +46,7 @@ contract StakingManager is Ownable {
             booToken.transfer(address(0xdead), penalty); // Burn penalty
         }
         emit Unstaked(msg.sender, index, returnAmount, penalty);
+        emit PenaltyBurn(msg.sender, s.amount, penalty);
         // Remove stake
         stakes[msg.sender][index] = stakes[msg.sender][stakes[msg.sender].length - 1];
         stakes[msg.sender].pop();

@@ -11,6 +11,7 @@ contract ReferralRegistry is Ownable(msg.sender) {
 
     event CodeRegistered(address indexed owner, bytes32 code);
     event ReferralRecorded(address indexed buyer, bytes32 indexed code, uint256 amount);
+    event AffiliateCommission(address indexed acct, uint256 volumeAfter, uint256 bpsApplied, uint256 commission);
 
     function register(bytes32 code) external {
         require(codeOwner[code] == address(0), "taken");
@@ -25,6 +26,7 @@ contract ReferralRegistry is Ownable(msg.sender) {
             uint256 comm = (amount * dynamicCommissionBps) / 10_000;
             stats[ref].commissionAccrued += comm;
             emit ReferralRecorded(buyer, code, amount);
+            emit AffiliateCommission(ref, stats[ref].volume, dynamicCommissionBps, comm);
         }
     }
 
